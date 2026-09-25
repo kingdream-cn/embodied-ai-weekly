@@ -12,6 +12,9 @@ export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
 
+  // GitHub Pages 项目站点部署路径（owner.github.io/embodied-ai-weekly/）
+  base: '/embodied-ai-weekly/',
+
   // 显式指定构建输出目录，与 GitHub Actions 上传路径保持一致
   outDir: 'dist',
 
