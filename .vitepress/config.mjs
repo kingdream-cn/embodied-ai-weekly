@@ -12,6 +12,9 @@ export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
 
+  // 极简黑客科技风：强制暗色终端模式
+  appearance: 'force-dark',
+
   // GitHub Pages 项目站点部署路径（owner.github.io/embodied-ai-weekly/）
   base: '/embodied-ai-weekly/',
 
@@ -20,7 +23,7 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
-    ['meta', { name: 'theme-color', content: '#4f46e5' }],
+    ['meta', { name: 'theme-color', content: '#00e599' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: '具身智能周刊' }],
     ['meta', { property: 'og:description', content: 'Embodied AI Weekly — 每周追踪具身智能前沿进展' }],

@@ -1,31 +1,61 @@
 /* =========================================================
-   现代文档流主题 — 覆盖 VitePress 变量 + 自定义组件样式
+   极简黑客科技风 — 终端 · 霓虹绿/青
    ========================================================= */
 
 :root {
-  --vp-c-brand-1: #4f46e5;
-  --vp-c-brand-2: #6366f1;
-  --vp-c-brand-3: #4f46e5;
-  --vp-c-brand-soft: rgba(99, 102, 241, 0.14);
+  --vp-c-brand-1: #00e599;
+  --vp-c-brand-2: #22d3ee;
+  --vp-c-brand-3: #00e599;
+  --vp-c-brand-soft: rgba(0, 229, 153, 0.12);
+
+  --vp-c-bg: #0a0a0f;
+  --vp-c-bg-alt: #0f1116;
+  --vp-c-bg-elv: #14161d;
+  --vp-c-bg-soft: #111319;
+
+  --vp-c-text-1: #d6dbe3;
+  --vp-c-text-2: #9aa3ad;
+  --vp-c-text-3: #65707c;
+
+  --vp-c-divider: rgba(120, 140, 160, 0.14);
+  --vp-c-border: rgba(0, 229, 153, 0.16);
+  --vp-c-gutter: #0f1116;
 
   --vp-font-family-base: 'Inter', 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', 'Noto Sans SC', -apple-system, system-ui, 'Segoe UI',
-    sans-serif;
+    'Microsoft YaHei', 'Noto Sans SC', -apple-system, system-ui, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular',
+    Consolas, 'Liberation Mono', Menlo, monospace;
 
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(120deg, #4f46e5 0%, #8b5cf6 55%, #06b6d4 100%);
-  --vp-home-hero-image-background-image: linear-gradient(120deg, #6366f1 40%, #8b5cf6 70%, #22d3ee 100%);
-  --vp-home-hero-image-filter: blur(60px);
+  --vp-home-hero-name-background: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
+  --vp-home-hero-image-background-image: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
+  --vp-home-hero-image-filter: blur(64px);
 
   --vp-layout-max-width: 1200px;
 }
 
 .dark {
-  --vp-c-brand-1: #818cf8;
-  --vp-c-brand-2: #a5b4fc;
-  --vp-c-brand-3: #818cf8;
-  --vp-c-brand-soft: rgba(129, 140, 248, 0.16);
-  --vp-home-hero-name-background: linear-gradient(120deg, #818cf8 0%, #c084fc 55%, #22d3ee 100%);
+  --vp-c-brand-1: #00e599;
+  --vp-c-brand-2: #22d3ee;
+  --vp-c-brand-3: #00e599;
+  --vp-c-brand-soft: rgba(0, 229, 153, 0.12);
+  --vp-home-hero-name-background: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
+}
+
+/* 终端式标题与标签 */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.card-title,
+.tag {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'PingFang SC',
+    'Microsoft YaHei', monospace;
+}
+
+::selection {
+  background: rgba(0, 229, 153, 0.3);
+  color: #fff;
 }
 
 /* ---------- 卡片网格 ---------- */
@@ -39,8 +69,8 @@
 .issue-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 10px;
   overflow: hidden;
   background: var(--vp-c-bg-soft);
   color: var(--vp-c-text-1);
@@ -48,9 +78,9 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .issue-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--vp-c-brand-1);
-  box-shadow: 0 12px 32px rgba(79, 70, 229, 0.14);
+  box-shadow: 0 0 24px rgba(0, 229, 153, 0.18), 0 0 4px rgba(34, 211, 238, 0.4);
 }
 .issue-card .cover {
   aspect-ratio: 16 / 9;
@@ -71,19 +101,25 @@
 .card-meta time {
   font-size: 12px;
   color: var(--vp-c-text-3);
+  font-family: var(--vp-font-family-mono);
 }
 .tag {
   font-size: 12px;
   line-height: 1;
   color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
-  border-radius: 999px;
-  padding: 4px 10px;
+  border: 1px solid rgba(0, 229, 153, 0.35);
+  border-radius: 4px;
+  background: transparent;
+  padding: 4px 8px;
 }
 .card-title {
   margin: 0 0 8px;
   font-size: 17px;
   line-height: 1.4;
+}
+.card-title::before {
+  content: '$ ';
+  color: var(--vp-c-brand-1);
 }
 .card-desc {
   margin: 0;
@@ -101,9 +137,10 @@
 }
 .key-points p {
   margin: 0;
-  padding: 16px 18px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--vp-c-border);
+  border-left: 3px solid var(--vp-c-brand-1);
+  border-radius: 8px;
   background: var(--vp-c-bg-soft);
   font-size: 14px;
   line-height: 1.7;
@@ -111,19 +148,21 @@
 .key-points p strong {
   display: inline-block;
   color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
-  border-radius: 6px;
+  border: 1px solid rgba(0, 229, 153, 0.35);
+  border-radius: 4px;
+  background: transparent;
   padding: 1px 8px;
   margin-right: 8px;
   font-weight: 600;
+  font-family: var(--vp-font-family-mono);
 }
 
 /* ---------- 媒体嵌入 ---------- */
 .media-embed {
   margin: 24px 0;
-  border-radius: 16px;
+  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-c-border);
   background: #000;
   display: flex;
   align-items: center;
@@ -145,9 +184,10 @@
   position: absolute;
   inset: auto 12px 12px 12px;
   padding: 6px 12px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #c9f6e6;
   font-size: 12.5px;
   text-align: center;
+  font-family: var(--vp-font-family-mono);
 }
