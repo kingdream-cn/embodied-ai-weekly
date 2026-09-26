@@ -1,10 +1,10 @@
 ---
 title: "2026具身周刊 - 第 39 期"
 date: 2026-09-21
-description: "智元远征 A3 Ultra 商业落地、安努六模型产线装配、Digit 5 无界协作、TypeSafe 极速决策模型。"
+description: "智元远征 A3 Ultra 商业落地、PhyAgentOS 物理智能体 Harness、Digit 5 无界协作、TypeSafe 极速决策模型。"
 tags:
   - 具身落地
-  - 工业工艺
+  - 物理智能体
   - 人形机器人
   - Agent架构
   - 电机硬件
@@ -29,14 +29,12 @@ tags:
 :::
 
 ::: card
-### 2. [工业工艺落地] [工业具身从"能走"转向"能干工艺"：安努智能全栈六模型打通落地，富临精工产线验证](https://mp.weixin.qq.com/s/c8RWwl_nSpzlunxe9HgOvQ?utm_source=gemini)
+### 2. [开源基座] [PhyAgentOS v1.0.0 发布：为物理智能体打造可执行、可验证、可演进的 Harness](https://mp.weixin.qq.com/s/c8RWwl_nSpzlunxe9HgOvQ?utm_source=gemini)
 
-**原文指路**：[产业特写](https://mp.weixin.qq.com/s/c8RWwl_nSpzlunxe9HgOvQ?utm_source=gemini) &nbsp;|&nbsp; **载体**：`产业特写 · 5 分钟`
+**原文指路**：[微信公众号原文](https://mp.weixin.qq.com/s/c8RWwl_nSpzlunxe9HgOvQ?utm_source=gemini) &nbsp;|&nbsp; **载体**：`技术特写 · 6 分钟`
 
-> ⚠️ 该链接正文实为《PhyAgentOS v1.0.0 发布：为物理智能体打造可执行、可验证、可演进的 Harness》，与本条标题不符，来源待人工复核。
-
-- **【核心亮点】**：构建由 **Helios / SimLab / ActiWorld / EvoHIL / AnuVerse / Nexus** 组成的六模型闭环矩阵，全面覆盖**数据—认知—训练—动作—部署**全流水线，在富临精工汽车零部件产线实机跑通高精装配工序。
-- **【团队参考】**：体现了工业具身从"基础移动搬运"向"精密工艺作业"演进的风向，做产线部署与全流程数采的同学可重点参考其模块化架构。
+- **【核心亮点】**：由**中山大学 HCP 实验室、鹏城国家实验室具身智能研究所与 X-Era Lab（拓元智慧）**联合研发的**开源物理智能体 Harness**，用 **Agent / Forge / Evidence / Verifier / Evolution** 五层职责补齐"执行—留证—验证—恢复—演进"闭环，兼容 **VLA、世界模型、仿真与真机**，让四足 / 人形 / 双臂异构机器人共用同一任务上下文——演示中三台机器人接力配制"六级 pH 彩虹"，第六支试管出现偏差时保留现场状态、只返工该环节，实测 pH **11.03** 进入容差才判定任务通过。基准上把 LIBERO 的 X-VLA 首次成功率从 **97.3% 提升至 98.6%**（54 个失败样本挽回 26 个，且未改动策略模型代码），CALVIN 五步长程任务最高 **+4.1 个百分点**，RoboCasa365 上 RLDX-1 / WorldDreamer 分别 **+7.2 / +8.4 个百分点**；支持构型从 **19 种扩展到 43 种**（9 种支持真机运行），新构型接入约 **5–10 分钟**，**MIT 协议**开源，GitHub Star 已破 **2100**。
+- **【团队参考】**：把"动作执行完"与"任务达标"拆开的设计值得直接借鉴——Verifier 依据目标、成功标准与证据时序输出 success / failure / replan，失败时在**原 AgentTask 内追加 PlanRevision 做有界恢复**，而非重建任务或盲目重试；适合负责长程任务编排、真机异常恢复与 Sim-to-Real 迁移的同学参考。
 :::
 
 ::: card
