@@ -21,10 +21,14 @@
   --vp-c-border: rgba(0, 229, 153, 0.16);
   --vp-c-gutter: #0f1116;
 
-  --vp-font-family-base: 'Inter', 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', 'Noto Sans SC', -apple-system, system-ui, sans-serif;
+  /* 正文：拉丁字符优先系统 UI 字体，中文按平台屏显黑体优先，避免回退到衬线字形 */
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    system-ui, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    'Noto Sans SC', 'Source Han Sans SC', 'Helvetica Neue', Arial, sans-serif;
+  /* 等宽：中文具备完整等宽字形的平台走系统等宽，否则中文仍用屏显黑体，避免落到怪异回退字 */
   --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular',
-    Consolas, 'Liberation Mono', Menlo, monospace;
+    Consolas, Menlo, 'DejaVu Sans Mono', 'Liberation Mono', 'PingFang SC',
+    'Microsoft YaHei', 'Noto Sans SC', monospace;
 
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
@@ -42,15 +46,50 @@
   --vp-home-hero-name-background: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
 }
 
-/* 终端式标题与标签 */
+/* ---------- 字体渲染优化（系统字体精修） ---------- */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+/* 中文标题改用屏显黑体（等宽只留给代码与编号），并按层级区分字重 */
 .vp-doc h1,
 .vp-doc h2,
 .vp-doc h3,
 .vp-doc h4,
+.vp-doc h5,
+.vp-doc h6,
 .card-title,
 .tag {
-  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'PingFang SC',
-    'Microsoft YaHei', monospace;
+  font-family: var(--vp-font-family-base);
+}
+.vp-doc h1,
+.vp-doc h2 {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.vp-doc h3,
+.vp-doc h4,
+.card-title {
+  font-weight: 600;
+}
+.tag {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* 数字等宽对齐，避免日期与指标宽度跳动 */
+.card-meta time,
+.vp-doc code,
+.vp-doc kbd {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 中文正文放宽行距，长段落更耐读 */
+.vp-doc p {
+  line-height: 1.85;
 }
 
 ::selection {
@@ -115,16 +154,19 @@
 .card-title {
   margin: 0 0 8px;
   font-size: 17px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
+/* `$` 提示符保留等宽终端感 */
 .card-title::before {
   content: '$ ';
   color: var(--vp-c-brand-1);
+  font-family: var(--vp-font-family-mono);
+  font-weight: 400;
 }
 .card-desc {
   margin: 0;
   font-size: 13.5px;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--vp-c-text-2);
 }
 
@@ -256,9 +298,11 @@
   border-radius: 4px;
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
-  font-family: var(--vp-font-family-mono);
-  font-size: 12px;
+  font-family: var(--vp-font-family-base);
+  font-size: 12.5px;
   font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
 }
 
 /* 卡片内提示（来源复核提醒等） */
