@@ -4,3 +4,4 @@ dist
 *.log
 .cache
 .vitepress/cache
+__pycache__
