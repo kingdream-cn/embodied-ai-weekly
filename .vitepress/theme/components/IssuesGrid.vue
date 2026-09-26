@@ -1,4 +1,5 @@
 <script setup>
+import { withBase } from 'vitepress'
 import { data as posts } from '../issues.data'
 
 function fmt(s) {
@@ -11,7 +12,7 @@ function fmt(s) {
 
 <template>
   <div class="issues-grid">
-    <a v-for="p in posts" :key="p.url" :href="p.url" class="issue-card">
+    <a v-for="p in posts" :key="p.url" :href="withBase(p.url)" class="issue-card">
       <div v-if="p.cover" class="cover" :style="{ backgroundImage: `url(${p.cover})` }"></div>
       <div class="card-body">
         <div class="card-meta">
