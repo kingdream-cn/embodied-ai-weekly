@@ -21,14 +21,16 @@
   --vp-c-border: rgba(0, 229, 153, 0.16);
   --vp-c-gutter: #0f1116;
 
-  /* 正文：拉丁字符优先系统 UI 字体，中文按平台屏显黑体优先，避免回退到衬线字形 */
-  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    system-ui, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
-    'Noto Sans SC', 'Source Han Sans SC', 'Helvetica Neue', Arial, sans-serif;
-  /* 等宽：中文具备完整等宽字形的平台走系统等宽，否则中文仍用屏显黑体，避免落到怪异回退字 */
-  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular',
-    Consolas, Menlo, 'DejaVu Sans Mono', 'Liberation Mono', 'PingFang SC',
-    'Microsoft YaHei', 'Noto Sans SC', monospace;
+  /* 正文：拉丁优先 Inter，中文按平台屏显黑体降级，避免回退到衬线字形 */
+  --vp-font-family-base: 'Inter', 'Inter var', -apple-system, BlinkMacSystemFont,
+    'Segoe UI Variable Text', 'Segoe UI', system-ui, 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans SC',
+    'Source Han Sans SC', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+  /* 等宽：硬核等宽字体优先，中文优先真等宽 CJK，其次屏显黑体，避免怪异回退字 */
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code',
+    'SF Mono', 'SFMono-Regular', Menlo, Consolas, 'Sarasa Mono SC',
+    'Noto Sans Mono CJK SC', 'DejaVu Sans Mono', 'Liberation Mono',
+    'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', monospace;
 
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
@@ -74,10 +76,18 @@
 
 /* ---------- 字体渲染优化（系统字体精修） ---------- */
 html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
+}
+
+/* 深色底用灰度平滑避免彩边发虚；浅色底保留次像素渲染，字重更实不显细 */
+.dark {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html:not(.dark) {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
 /* 中文标题改用屏显黑体（等宽只留给代码与编号），并按层级区分字重 */
@@ -91,14 +101,22 @@ html {
 .tag {
   font-family: var(--vp-font-family-base);
 }
+/* 负字距让英文代号与数字更紧凑，中文标题仍保持可读 */
 .vp-doc h1,
-.vp-doc h2 {
+.vp-doc h2,
+.vp-doc h3,
+.card-title {
+  letter-spacing: -0.02em;
+}
+.vp-doc h1,
+.vp-doc h2,
+.card-title {
   font-weight: 700;
-  letter-spacing: 0.01em;
 }
 .vp-doc h3,
 .vp-doc h4,
-.card-title {
+.vp-doc h5,
+.vp-doc h6 {
   font-weight: 600;
 }
 .tag {
