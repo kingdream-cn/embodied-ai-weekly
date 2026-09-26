@@ -191,3 +191,98 @@
   text-align: center;
   font-family: var(--vp-font-family-mono);
 }
+
+/* ---------- 折叠抽屉卡片（周刊条目 <details>） ---------- */
+.issue-item {
+  margin: 14px 0 26px;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.issue-item[open] {
+  border-color: rgba(0, 229, 153, 0.45);
+  box-shadow: 0 0 24px rgba(0, 229, 153, 0.1);
+}
+
+/* 收起态：去掉浏览器默认三角，整块可点 */
+.issue-item > .issue-summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 18px;
+  transition: background 0.2s ease;
+}
+.issue-item > .issue-summary::-webkit-details-marker {
+  display: none;
+}
+.issue-item > .issue-summary:hover {
+  background: rgba(0, 229, 153, 0.06);
+}
+.issue-item[open] > .issue-summary {
+  border-bottom: 1px dashed var(--vp-c-divider);
+}
+
+/* 分类胶囊 */
+.issue-summary .tag {
+  display: inline-block;
+  margin: 0 6px 8px 0;
+}
+
+/* 一句话结论 */
+.issue-summary p {
+  margin: 0 0 10px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--vp-c-text-2);
+}
+.issue-summary p strong {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+/* 展开 / 收起按钮（纯 CSS 伪元素，无需额外 DOM） */
+.issue-summary::after {
+  content: '▸ 展开查看全文及实机演示';
+  display: inline-block;
+  padding: 5px 12px;
+  border: 1px solid rgba(0, 229, 153, 0.35);
+  border-radius: 6px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--vp-c-brand-1);
+  transition: background 0.2s ease;
+}
+.issue-summary:hover::after {
+  background: rgba(0, 229, 153, 0.12);
+}
+.issue-item[open] > .issue-summary::after {
+  content: '▴ 收起内容';
+  background: rgba(0, 229, 153, 0.1);
+}
+
+/* 展开后的正文区域：统一内边距 */
+.issue-item > .issue-summary ~ * {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+.issue-item > .issue-summary ~ img {
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.issue-item > .issue-summary ~ *:last-child {
+  padding-bottom: 16px;
+}
+
+@media (max-width: 639px) {
+  .issue-item > .issue-summary {
+    padding: 14px;
+  }
+  .issue-item > .issue-summary ~ * {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
