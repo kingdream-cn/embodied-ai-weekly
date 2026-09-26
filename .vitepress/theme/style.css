@@ -108,6 +108,11 @@ html:not(.dark) {
 .card-title {
   letter-spacing: -0.02em;
 }
+/* 板块标题（## 部分标题）比默认 24px 略放大一档 */
+.vp-doc h2 {
+  font-size: 26px;
+  line-height: 34px;
+}
 .vp-doc h1,
 .vp-doc h2,
 .card-title {
@@ -315,8 +320,8 @@ html:not(.dark) {
   margin: 0 0 8px;
   padding: 0;
   border: 0;
-  font-size: 15.5px;
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 1.6;
 }
 .vp-doc .news-card > h3:first-child .header-anchor {
   display: none;
