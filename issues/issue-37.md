@@ -17,7 +17,7 @@ tags:
 
 ## 💡 行业洞察
 
-::: card
+::: card insight
 ### 1. [世界模型] [李飞飞发布：全球首个多模态世界模型（World Labs）](https://www.qbitai.com/2026/09/482586.html)
 
 **原文指路**：[量子位](https://www.qbitai.com/2026/09/482586.html) &nbsp;|&nbsp; **载体**：`深度特写 · 5 分钟`
@@ -26,7 +26,7 @@ tags:
 - **【团队参考】**：利于仿真环境生成与具身环境空间感知团队了解底层物理建模演进。
 :::
 
-::: card
+::: card insight
 ### 2. [技术通识] [机器人的发展历史与路径](https://blog.csdn.net/hiwangwenbing/article/details/159384459)
 
 **原文指路**：[CSDN](https://blog.csdn.net/hiwangwenbing/article/details/159384459) &nbsp;|&nbsp; **载体**：`硬核长文 · 15 分钟精读`
@@ -45,7 +45,7 @@ tags:
 
 ## 🛠️ 开源项目 & 行业案例
 
-::: card
+::: card opensource
 ### 1. [低成本开源] [这只具身小鸭子为什么爆火？microduck 深度分析](https://www.bilibili.com/video/BV1yNta6TEeE/?spm_id_from=333.337.search-card.all.click&vd_source=7d367e37a720eca8a7defb04145cd5cf)
 
 **原文指路**：[B 站视频](https://www.bilibili.com/video/BV1yNta6TEeE/?spm_id_from=333.337.search-card.all.click&vd_source=7d367e37a720eca8a7defb04145cd5cf) &nbsp;|&nbsp; **载体**：`B 站视频 · 10 分钟`
@@ -54,7 +54,7 @@ tags:
 - **【团队参考】**：适合低成本快速验证具身操作小算法原型。
 :::
 
-::: card
+::: card opensource
 ### 2. [硬件拆解] [宇树 G1 人形机器人拆解](https://www.bilibili.com/video/BV1diGX6rEN5/?spm_id_from=333.337.search-card.all.click&vd_source=7d367e37a720eca8a7defb04145cd5cf)
 
 **原文指路**：[B 站视频](https://www.bilibili.com/video/BV1diGX6rEN5/?spm_id_from=333.337.search-card.all.click&vd_source=7d367e37a720eca8a7defb04145cd5cf) &nbsp;|&nbsp; **载体**：`硬核拆解视频 · 18 分钟`

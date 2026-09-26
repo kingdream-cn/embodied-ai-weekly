@@ -19,7 +19,7 @@ tags:
 
 ## 💡 行业洞察
 
-::: card
+::: card insight
 ### 1. [商业落地] [智元远征 A3 Ultra 商业实景落地：进驻 4S 店/酒店/便利店跑通铺床、理货与服务](https://www.toutiao.com/article/7686296704445940274/?utm_source=gemini)
 
 **原文指路**：[今日头条](https://www.toutiao.com/article/7686296704445940274/?utm_source=gemini) · [微信专栏](https://mp.weixin.qq.com/s?src=11&timestamp=1789951685&ver=6979&signature=luPsj4JCR-MKIZtV3Eb69LrTae11LP0hB9VE48XLd-hic4aITlZ7dq*clvYDAQ8Bc*f9q3SDyVSsJRKgMUWjPHs*hlLSFEUdPZyfYBSljT4pR0nJXweu8tGvFM16Em31&new=1&utm_source=gemini) &nbsp;|&nbsp; **载体**：`多源参考 · 4 分钟`
@@ -28,7 +28,7 @@ tags:
 - **【团队参考】**：体现了双臂协同向"柔性物体操作（布料）"与"长程任务规划"落地的标杆路径，适合负责末端位姿估计与实际场景泛化的同学参考。
 :::
 
-::: card
+::: card insight
 ### 2. [开源基座] [PhyAgentOS v1.0.0 发布：为物理智能体打造可执行、可验证、可演进的 Harness](https://mp.weixin.qq.com/s/c8RWwl_nSpzlunxe9HgOvQ?utm_source=gemini)
 
 **原文指路**：[微信公众号原文](https://mp.weixin.qq.com/s/c8RWwl_nSpzlunxe9HgOvQ?utm_source=gemini) &nbsp;|&nbsp; **载体**：`技术特写 · 6 分钟`
@@ -37,7 +37,7 @@ tags:
 - **【团队参考】**：把"动作执行完"与"任务达标"拆开的设计值得直接借鉴——Verifier 依据目标、成功标准与证据时序输出 success / failure / replan，失败时在**原 AgentTask 内追加 PlanRevision 做有界恢复**，而非重建任务或盲目重试；适合负责长程任务编排、真机异常恢复与 Sim-to-Real 迁移的同学参考。
 :::
 
-::: card
+::: card insight
 ### 3. [工业具身标杆] [Agility Robotics 正式发布 Digit 5 人形机器人：破除安全防护笼与人类无界协作](https://www.therobotreport.com/agilitys-digit-5-humanoid-has-new-legs-batteries-safety-upgrades/?utm_source=gemini)
 
 **原文指路**：[The Robot Report](https://www.therobotreport.com/agilitys-digit-5-humanoid-has-new-legs-batteries-safety-upgrades/?utm_source=gemini) &nbsp;|&nbsp; **载体**：`行业特写 · 5 分钟`
@@ -46,7 +46,7 @@ tags:
 - **【团队参考】**：标志着工业人形机器人由"受限示范"步入"主动合规协同"时代，对团队做人机混流安全感知避障、主动急停机制及高负荷执行器选型有关键指导价值。
 :::
 
-::: card
+::: card insight
 ### 4. [系统基座] [TypeSafe 推出 System One 模型 Jev：专为 Agent 极速决策而生，从根源消除大模型幻觉](https://mp.weixin.qq.com/s/DNr2E1OW63GO0v9dMsrvSA?utm_source=gemini)
 
 **原文指路**：[架构前沿](https://mp.weixin.qq.com/s/DNr2E1OW63GO0v9dMsrvSA?utm_source=gemini) &nbsp;|&nbsp; **载体**：`架构前沿 · 5 分钟`
@@ -59,7 +59,7 @@ tags:
 
 ## 📚 精选教程 & 学习资源
 
-::: card
+::: card tutorial
 ### 1. [硬件科普] [人形机器人电机技术全解析：从关节驱动到全身控制](https://blog.csdn.net/m0_63284825/article/details/162054649?utm_source=gemini)
 
 **原文指路**：[CSDN 深度博客](https://blog.csdn.net/m0_63284825/article/details/162054649?utm_source=gemini) &nbsp;|&nbsp; **载体**：`万字长文 · 15 分钟`
@@ -68,7 +68,7 @@ tags:
 - **【团队参考】**：搞懂为什么仿真里的策略到了真机上会被"齿轮背隙"和"电机发热"影响，了解不同电机的区别。
 :::
 
-::: card
+::: card tutorial
 ### 2. [概念科普] [机器人的"大脑"到底是什么？一分钟看懂 LLM、VLA 与 WM 的分工](https://v.douyin.com/XX64wj1A3ZA/?utm_source=gemini)
 
 **原文指路**：[抖音短视频 · SIC矽客机器人](https://v.douyin.com/XX64wj1A3ZA/?utm_source=gemini) &nbsp;|&nbsp; **载体**：`可视化视频 · 3 分钟`

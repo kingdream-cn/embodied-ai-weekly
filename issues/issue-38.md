@@ -17,7 +17,7 @@ tags:
 
 ## 💡 行业洞察
 
-::: card
+::: card insight
 ### 1. [端到端运控] [智元 AGILE 2.0：感控一体、"所见即所动"的全身运控引擎](https://mp.weixin.qq.com/s?__biz=Mzg4NzgyMjIwNg==&mid=2247544997&idx=3&sn=399499363298d65eb4d15bd85e050d96&chksm=ce44357f6c24e5b8c139ec560c901165847ef3f8f964e45e99a6ac9023320a9f40e25365766f#rd)
 
 **原文指路**：[智元微信公众号](https://mp.weixin.qq.com/s?__biz=Mzg4NzgyMjIwNg==&mid=2247544997&idx=3&sn=399499363298d65eb4d15bd85e050d96&chksm=ce44357f6c24e5b8c139ec560c901165847ef3f8f964e45e99a6ac9023320a9f40e25365766f#rd) &nbsp;|&nbsp; **载体**：`架构解析 · 5 分钟精读`
@@ -26,7 +26,7 @@ tags:
 - **【团队参考】**：对组内负责底盘运动控制与双足步态研发的同学有很强参考价值，是突破传统解耦控制、迈向端到端全身运控的标杆方案。
 :::
 
-::: card
+::: card insight
 ### 2. [技术洞察] [人形机器人拳击对抗背后的技术逻辑与工程价值](https://news.qq.com/rain/a/20260909A0DTAO00)
 
 **原文指路**：[腾讯深度专栏](https://news.qq.com/rain/a/20260909A0DTAO00) · [中新网场视频](https://www.chinanews.com.cn/cj/shipin/cns-d/2026/09-08/news1068228.shtml) &nbsp;|&nbsp; **载体**：`行业特写 · 4 分钟阅读 / 40 秒视频`
@@ -39,7 +39,7 @@ tags:
 
 ## 📚 精选教程 & 学习资源
 
-::: card
+::: card tutorial
 ### 1. [通识指南] [具身智能全景深度指南（2026 年 9 月版）](https://blog.csdn.net/qq_51605551/article/details/164305391)
 
 **原文指路**：[CSDN](https://blog.csdn.net/qq_51605551/article/details/164305391) &nbsp;|&nbsp; **载体**：`深度长文 · 15 分钟精读`
@@ -52,7 +52,7 @@ tags:
 
 ## 🛠️ 开源项目 & 行业案例
 
-::: card
+::: card opensource
 ### 1. [RL 仿真环境] [microduck_rl：小型双足机器人强化学习训练场（1.9k⭐）](https://github.com/pollen-robotics/microduck_rl)
 
 **原文指路**：[GitHub 仓库](https://github.com/pollen-robotics/microduck_rl) &nbsp;|&nbsp; **载体**：`GitHub 仓库 · Apache-2.0`

@@ -199,28 +199,71 @@ html {
   font-family: var(--vp-font-family-mono);
 }
 
-/* ---------- 周刊条目卡片流（钉钉风高信息密度） ---------- */
+/* ---------- 周刊条目卡片流（钉钉风高信息密度 · 按板块配色） ---------- */
 :root {
   /* 浅色模式：极淡冷灰底 */
   --news-card-bg: rgba(15, 23, 42, 0.03);
-  --news-card-border: rgba(15, 23, 42, 0.12);
 }
 .dark {
   /* 暗色模式：微透明白底 */
   --news-card-bg: rgba(255, 255, 255, 0.028);
-  --news-card-border: rgba(0, 229, 153, 0.18);
 }
+
 .news-card {
+  /* 强调色变量，默认主色，由板块修饰类覆盖 */
+  --card-accent: #00e599;
+  --card-border: rgba(0, 229, 153, 0.2);
+  --card-border-hover: rgba(0, 229, 153, 0.5);
+  --card-soft: rgba(0, 229, 153, 0.09);
+  --card-wash: rgba(0, 229, 153, 0.05);
+
   margin: 14px 0;
   padding: 14px 16px;
-  border: 1px solid var(--news-card-border);
+  border: 1px solid var(--card-border);
   border-radius: 10px;
   background: var(--news-card-bg);
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 .news-card:hover {
-  border-color: rgba(0, 229, 153, 0.4);
-  background: rgba(0, 229, 153, 0.05);
+  border-color: var(--card-border-hover);
+  background: var(--card-wash);
+}
+
+/* 五个板块各一套配色：行业洞察 · 精选教程 · 开源项目 · 工程实战 · 顶会前沿 */
+.news-card.card-insight {
+  --card-accent: #00e599;
+  --card-border: rgba(0, 229, 153, 0.2);
+  --card-border-hover: rgba(0, 229, 153, 0.5);
+  --card-soft: rgba(0, 229, 153, 0.09);
+  --card-wash: rgba(0, 229, 153, 0.05);
+}
+.news-card.card-tutorial {
+  --card-accent: #22d3ee;
+  --card-border: rgba(34, 211, 238, 0.24);
+  --card-border-hover: rgba(34, 211, 238, 0.55);
+  --card-soft: rgba(34, 211, 238, 0.1);
+  --card-wash: rgba(34, 211, 238, 0.06);
+}
+.news-card.card-opensource {
+  --card-accent: #a78bfa;
+  --card-border: rgba(167, 139, 250, 0.26);
+  --card-border-hover: rgba(167, 139, 250, 0.6);
+  --card-soft: rgba(167, 139, 250, 0.12);
+  --card-wash: rgba(167, 139, 250, 0.07);
+}
+.news-card.card-practice {
+  --card-accent: #fbbf24;
+  --card-border: rgba(251, 191, 36, 0.26);
+  --card-border-hover: rgba(251, 191, 36, 0.6);
+  --card-soft: rgba(251, 191, 36, 0.12);
+  --card-wash: rgba(251, 191, 36, 0.07);
+}
+.news-card.card-paper {
+  --card-accent: #f472b6;
+  --card-border: rgba(244, 114, 182, 0.26);
+  --card-border-hover: rgba(244, 114, 182, 0.6);
+  --card-soft: rgba(244, 114, 182, 0.12);
+  --card-wash: rgba(244, 114, 182, 0.07);
 }
 
 /* 卡片内标题：紧贴头部，去掉默认大间距 */
@@ -238,7 +281,7 @@ html {
   color: var(--vp-c-text-1);
 }
 .vp-doc .news-card > h3:first-child a:hover {
-  color: var(--vp-c-brand-1);
+  color: var(--card-accent);
 }
 
 /* 副信息栏（原文指路 + 载体标签） */
@@ -248,11 +291,20 @@ html {
   line-height: 1.65;
   color: var(--vp-c-text-2);
 }
+/* 副信息栏「原文指路」后的链接：与卡片边框同色 */
+.vp-doc .news-card > p a {
+  color: var(--card-accent);
+}
+.vp-doc .news-card > p a:hover {
+  color: var(--card-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .vp-doc .news-card > p code {
   padding: 2px 7px;
   border-radius: 4px;
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
+  background: var(--card-soft);
+  color: var(--card-accent);
   font-size: 12px;
 }
 
@@ -281,23 +333,23 @@ html {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--vp-c-brand-1);
-  opacity: 0.75;
+  background: var(--card-accent);
+  opacity: 0.85;
 }
-/* 行内重点词 */
+/* 行内重点词：保持正文色，仅加粗 */
 .vp-doc .news-card ul li strong {
   color: var(--vp-c-text-1);
   font-weight: 700;
 }
-/* 【核心亮点】/【团队参考】标签 */
+/* 【核心亮点】/【团队参考】标签：唯一着色的文字 */
 .vp-doc .news-card ul li > strong:first-child {
   display: inline-block;
   margin-right: 6px;
   padding: 1px 8px;
-  border: 1px solid rgba(0, 229, 153, 0.3);
+  border: 1px solid var(--card-border-hover);
   border-radius: 4px;
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
+  background: var(--card-soft);
+  color: var(--card-accent);
   font-family: var(--vp-font-family-base);
   font-size: 12.5px;
   font-weight: 600;
@@ -309,9 +361,9 @@ html {
 .vp-doc .news-card blockquote {
   margin: 0 0 10px;
   padding: 6px 12px;
-  border-left: 3px solid rgba(34, 211, 238, 0.5);
+  border-left: 3px solid var(--card-border-hover);
   border-radius: 0 6px 6px 0;
-  background: rgba(34, 211, 238, 0.06);
+  background: var(--card-wash);
   font-size: 12.5px;
   line-height: 1.6;
   color: var(--vp-c-text-2);

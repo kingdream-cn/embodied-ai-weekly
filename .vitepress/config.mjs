@@ -1,9 +1,5 @@
 import { defineConfig } from 'vitepress'
 import container from 'markdown-it-container'
-import { generateFeed } from './feed.mjs'
-
-// 在构建期间收集各页面元数据（供 RSS 生成使用）
-const feedPosts = []
 
 export default defineConfig({
   // 网站标题/描述
@@ -35,7 +31,6 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '往期周刊', link: '/issues/' },
-      { text: 'RSS 订阅', link: '/feed.xml' },
     ],
 
     // 侧边栏
@@ -46,10 +41,6 @@ export default defineConfig({
           { text: '首页', link: '/' },
           { text: '往期周刊', link: '/issues/' },
         ],
-      },
-      {
-        text: '订阅',
-        items: [{ text: 'RSS 订阅', link: '/feed.xml' }],
       },
     ],
 
@@ -91,24 +82,18 @@ export default defineConfig({
         },
       })
 
-      // 周刊条目卡片容器：::: card
+      // 周刊条目卡片容器：::: card [板块标识]
+      // 板块标识（insight / tutorial / opensource / practice / paper）决定卡片配色
       md.use(container, 'card', {
         render(tokens, idx) {
           const token = tokens[idx]
           if (token.nesting === 1) {
-            return '<div class="news-card">\n'
+            const kind = token.info.trim().split(/\s+/)[1]
+            return `<div class="news-card${kind ? ` card-${kind}` : ''}">\n`
           }
           return '</div>\n'
         },
       })
     },
   },
-
-  // 渲染页面时收集 frontmatter 元数据
-  transformPageData(pageData) {
-    feedPosts.push(pageData)
-  },
-
-  // 构建结束时生成 RSS feed.xml
-  buildEnd: (siteConfig) => generateFeed(siteConfig, feedPosts),
 })

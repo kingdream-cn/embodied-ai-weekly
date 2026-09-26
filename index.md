@@ -9,9 +9,6 @@ hero:
     - theme: brand
       text: 查看往期
       link: /issues/
-    - theme: alt
-      text: RSS 订阅
-      link: /feed.xml
 ---
 
 # 往期周刊
