@@ -157,132 +157,128 @@
   font-family: var(--vp-font-family-mono);
 }
 
-/* ---------- 媒体嵌入 ---------- */
-.media-embed {
-  margin: 24px 0;
+/* ---------- 周刊条目卡片流（钉钉风高信息密度） ---------- */
+:root {
+  /* 浅色模式：极淡冷灰底 */
+  --news-card-bg: rgba(15, 23, 42, 0.03);
+  --news-card-border: rgba(15, 23, 42, 0.12);
+}
+.dark {
+  /* 暗色模式：微透明白底 */
+  --news-card-bg: rgba(255, 255, 255, 0.028);
+  --news-card-border: rgba(0, 229, 153, 0.18);
+}
+.news-card {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--news-card-border);
   border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--vp-c-border);
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  background: var(--news-card-bg);
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
-.media-embed video,
-.media-embed img,
-.media-embed iframe {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+.news-card:hover {
+  border-color: rgba(0, 229, 153, 0.4);
+  background: rgba(0, 229, 153, 0.05);
 }
-.media-embed iframe {
+
+/* 卡片内标题：紧贴头部，去掉默认大间距 */
+.vp-doc .news-card > h3:first-child {
+  margin: 0 0 8px;
+  padding: 0;
   border: 0;
+  font-size: 15.5px;
+  line-height: 1.55;
 }
-.media-embed figcaption {
-  position: absolute;
-  inset: auto 12px 12px 12px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.65);
-  color: #c9f6e6;
-  font-size: 12.5px;
-  text-align: center;
-  font-family: var(--vp-font-family-mono);
-}
-
-/* ---------- 折叠抽屉卡片（周刊条目 <details>） ---------- */
-.issue-item {
-  margin: 14px 0 26px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 10px;
-  background: var(--vp-c-bg-soft);
-  overflow: hidden;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.issue-item[open] {
-  border-color: rgba(0, 229, 153, 0.45);
-  box-shadow: 0 0 24px rgba(0, 229, 153, 0.1);
-}
-
-/* 收起态：去掉浏览器默认三角，整块可点 */
-.issue-item > .issue-summary {
-  display: block;
-  list-style: none;
-  cursor: pointer;
-  padding: 16px 18px;
-  transition: background 0.2s ease;
-}
-.issue-item > .issue-summary::-webkit-details-marker {
+.vp-doc .news-card > h3:first-child .header-anchor {
   display: none;
 }
-.issue-item > .issue-summary:hover {
-  background: rgba(0, 229, 153, 0.06);
+.vp-doc .news-card > h3:first-child a {
+  color: var(--vp-c-text-1);
 }
-.issue-item[open] > .issue-summary {
-  border-bottom: 1px dashed var(--vp-c-divider);
-}
-
-/* 分类胶囊 */
-.issue-summary .tag {
-  display: inline-block;
-  margin: 0 6px 8px 0;
+.vp-doc .news-card > h3:first-child a:hover {
+  color: var(--vp-c-brand-1);
 }
 
-/* 一句话结论 */
-.issue-summary p {
+/* 副信息栏（原文指路 + 载体标签） */
+.vp-doc .news-card > p {
   margin: 0 0 10px;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.65;
   color: var(--vp-c-text-2);
 }
-.issue-summary p strong {
+.vp-doc .news-card > p code {
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
+  font-size: 12px;
+}
+
+/* 要点列表：高密度、无默认缩进 */
+.vp-doc .news-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vp-doc .news-card ul li {
+  position: relative;
+  margin: 0 0 8px;
+  padding-left: 15px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--vp-c-text-1);
+}
+.vp-doc .news-card ul li:last-child {
+  margin-bottom: 2px;
+}
+.vp-doc .news-card ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.66em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-1);
+  opacity: 0.75;
+}
+/* 行内重点词 */
+.vp-doc .news-card ul li strong {
+  color: var(--vp-c-text-1);
+  font-weight: 700;
+}
+/* 【核心亮点】/【团队参考】标签 */
+.vp-doc .news-card ul li > strong:first-child {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 1px 8px;
+  border: 1px solid rgba(0, 229, 153, 0.3);
+  border-radius: 4px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
   font-weight: 600;
 }
 
-/* 展开 / 收起按钮（纯 CSS 伪元素，无需额外 DOM） */
-.issue-summary::after {
-  content: '▸ 展开查看全文及实机演示';
-  display: inline-block;
-  padding: 5px 12px;
-  border: 1px solid rgba(0, 229, 153, 0.35);
-  border-radius: 6px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 12px;
-  line-height: 1.4;
-  color: var(--vp-c-brand-1);
-  transition: background 0.2s ease;
+/* 卡片内提示（来源复核提醒等） */
+.vp-doc .news-card blockquote {
+  margin: 0 0 10px;
+  padding: 6px 12px;
+  border-left: 3px solid rgba(34, 211, 238, 0.5);
+  border-radius: 0 6px 6px 0;
+  background: rgba(34, 211, 238, 0.06);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
 }
-.issue-summary:hover::after {
-  background: rgba(0, 229, 153, 0.12);
-}
-.issue-item[open] > .issue-summary::after {
-  content: '▴ 收起内容';
-  background: rgba(0, 229, 153, 0.1);
-}
-
-/* 展开后的正文区域：统一内边距 */
-.issue-item > .issue-summary ~ * {
-  padding-left: 18px;
-  padding-right: 18px;
-}
-.issue-item > .issue-summary ~ img {
-  box-sizing: border-box;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.issue-item > .issue-summary ~ *:last-child {
-  padding-bottom: 16px;
+.vp-doc .news-card blockquote p {
+  margin: 0;
 }
 
 @media (max-width: 639px) {
-  .issue-item > .issue-summary {
-    padding: 14px;
-  }
-  .issue-item > .issue-summary ~ * {
-    padding-left: 14px;
-    padding-right: 14px;
+  .news-card {
+    padding: 12px 13px;
+    border-radius: 8px;
   }
 }

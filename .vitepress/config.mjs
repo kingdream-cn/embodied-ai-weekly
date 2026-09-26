@@ -75,13 +75,28 @@ export default defineConfig({
 
   markdown: {
     theme: { light: 'github-light', dark: 'github-dark' },
-    // 「要点卡片」自定义容器：::: key-points
+
+    // 允许容器内的标题进入右侧大纲（周刊条目标题写在 ::: card 内）
+    headers: { shouldAllowNested: true },
+
     config(md) {
+      // 「要点卡片」自定义容器：::: key-points
       md.use(container, 'key-points', {
         render(tokens, idx) {
           const token = tokens[idx]
           if (token.nesting === 1) {
             return '<div class="key-points">\n'
+          }
+          return '</div>\n'
+        },
+      })
+
+      // 周刊条目卡片容器：::: card
+      md.use(container, 'card', {
+        render(tokens, idx) {
+          const token = tokens[idx]
+          if (token.nesting === 1) {
+            return '<div class="news-card">\n'
           }
           return '</div>\n'
         },
