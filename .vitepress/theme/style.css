@@ -35,7 +35,7 @@
   --vp-home-hero-image-background-image: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
   --vp-home-hero-image-filter: blur(64px);
 
-  --vp-layout-max-width: 1200px;
+  --vp-layout-max-width: 1600px;
 }
 
 .dark {
@@ -44,6 +44,32 @@
   --vp-c-brand-3: #00e599;
   --vp-c-brand-soft: rgba(0, 229, 153, 0.12);
   --vp-home-hero-name-background: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
+}
+
+/* ---------- 布局宽度：放宽版心，消除两侧过宽留白 ---------- */
+/* 1280px 起右侧目录栏出现，把默认 32px 的正文-目录间距收到 16px */
+@media (min-width: 1280px) {
+  html .VPDoc .aside {
+    padding-left: 16px;
+    max-width: 240px;
+  }
+}
+
+/* 正文容器默认 688px 偏窄，按可用空间分档放宽。
+
+   档位依据：右侧目录栏 224px、正文容器左右各 32px 内边距，故
+   正文 800 / 960 时整块宽度分别为 1120 / 1280，
+   加上左侧 272px 侧边栏后分别需要 1392 / 1552 的视口宽度，
+   因此起点取 1440 与 1536，避免在窄屏挤压缩放。 */
+@media (min-width: 1440px) {
+  html .VPDoc.has-aside .content .content-container {
+    max-width: 800px;
+  }
+}
+@media (min-width: 1536px) {
+  html .VPDoc.has-aside .content .content-container {
+    max-width: 960px;
+  }
 }
 
 /* ---------- 字体渲染优化（系统字体精修） ---------- */
