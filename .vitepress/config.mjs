@@ -8,8 +8,8 @@ export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
 
-  // 支持明暗切换，默认暗色（钉钉风），可切到白底蓝链的浅色模式
-  appearance: 'dark',
+  // 支持明暗切换，默认明色（钉钉白底蓝链），可切到暗色模式
+  appearance: { initialValue: 'light' },
 
   // GitHub Pages 项目站点部署路径（owner.github.io/embodied-ai-weekly/）
   base: '/embodied-ai-weekly/',
@@ -45,6 +45,7 @@ export default defineConfig({
       {
         text: '2026 年',
         items: [
+          { text: '第 40 期', link: '/issues/issue-40' },
           { text: '第 39 期', link: '/issues/issue-39' },
           { text: '第 38 期', link: '/issues/issue-38' },
           { text: '第 37 期', link: '/issues/issue-37' },
