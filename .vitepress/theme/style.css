@@ -3,6 +3,46 @@
    ========================================================= */
 
 :root {
+  /* ===== 浅色模式（仿图一：极淡冷灰底 + 白色卡片，青绿降饱和保可读） ===== */
+  --vp-c-brand-1: #0d9488;
+  --vp-c-brand-2: #0891b2;
+  --vp-c-brand-3: #0f766e;
+  --vp-c-brand-soft: rgba(13, 148, 136, 0.12);
+
+  --vp-c-bg: #f6f7f9;
+  --vp-c-bg-alt: #ffffff;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #fbfcfd;
+
+  --vp-c-text-1: #1c2433;
+  --vp-c-text-2: #4b5565;
+  --vp-c-text-3: #8a94a6;
+
+  --vp-c-divider: rgba(15, 23, 42, 0.08);
+  --vp-c-border: rgba(13, 148, 136, 0.18);
+  --vp-c-gutter: #ffffff;
+
+  /* 正文：拉丁优先 Inter，中文按平台屏显黑体降级，避免回退到衬线字形 */
+  --vp-font-family-base: 'Inter', 'Inter var', -apple-system, BlinkMacSystemFont,
+    'Segoe UI Variable Text', 'Segoe UI', system-ui, 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans SC',
+    'Source Han Sans SC', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+  /* 等宽：硬核等宽字体优先，中文优先真等宽 CJK，其次屏显黑体，避免怪异回退字 */
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code',
+    'SF Mono', 'SFMono-Regular', Menlo, Consolas, 'Sarasa Mono SC',
+    'Noto Sans Mono CJK SC', 'DejaVu Sans Mono', 'Liberation Mono',
+    'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', monospace;
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(90deg, #0d9488 0%, #0891b2 100%);
+  --vp-home-hero-image-background-image: linear-gradient(90deg, #0d9488 0%, #0891b2 100%);
+  --vp-home-hero-image-filter: blur(64px);
+
+  --vp-layout-max-width: 1600px;
+}
+
+.dark {
+  /* ===== 暗色模式（保留青绿霓虹 + 微光晕） ===== */
   --vp-c-brand-1: #00e599;
   --vp-c-brand-2: #22d3ee;
   --vp-c-brand-3: #00e599;
@@ -21,31 +61,9 @@
   --vp-c-border: rgba(0, 229, 153, 0.16);
   --vp-c-gutter: #0f1116;
 
-  /* 正文：拉丁优先 Inter，中文按平台屏显黑体降级，避免回退到衬线字形 */
-  --vp-font-family-base: 'Inter', 'Inter var', -apple-system, BlinkMacSystemFont,
-    'Segoe UI Variable Text', 'Segoe UI', system-ui, 'PingFang SC',
-    'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans SC',
-    'Source Han Sans SC', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
-  /* 等宽：硬核等宽字体优先，中文优先真等宽 CJK，其次屏显黑体，避免怪异回退字 */
-  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code',
-    'SF Mono', 'SFMono-Regular', Menlo, Consolas, 'Sarasa Mono SC',
-    'Noto Sans Mono CJK SC', 'DejaVu Sans Mono', 'Liberation Mono',
-    'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', monospace;
-
-  --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
   --vp-home-hero-image-background-image: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
   --vp-home-hero-image-filter: blur(64px);
-
-  --vp-layout-max-width: 1600px;
-}
-
-.dark {
-  --vp-c-brand-1: #00e599;
-  --vp-c-brand-2: #22d3ee;
-  --vp-c-brand-3: #00e599;
-  --vp-c-brand-soft: rgba(0, 229, 153, 0.12);
-  --vp-home-hero-name-background: linear-gradient(90deg, #00e599 0%, #22d3ee 100%);
 }
 
 /* ---------- 布局宽度：放宽版心，消除两侧过宽留白 ---------- */
@@ -142,6 +160,9 @@ html:not(.dark) {
 }
 
 ::selection {
+  background: rgba(13, 148, 136, 0.2);
+}
+.dark ::selection {
   background: rgba(0, 229, 153, 0.3);
   color: #fff;
 }
@@ -168,6 +189,9 @@ html:not(.dark) {
 .issue-card:hover {
   transform: translateY(-3px);
   border-color: var(--vp-c-brand-1);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+.dark .issue-card:hover {
   box-shadow: 0 0 24px rgba(0, 229, 153, 0.18), 0 0 4px rgba(34, 211, 238, 0.4);
 }
 .issue-card .cover {
@@ -195,7 +219,7 @@ html:not(.dark) {
   font-size: 12px;
   line-height: 1;
   color: var(--vp-c-brand-1);
-  border: 1px solid rgba(0, 229, 153, 0.35);
+  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 35%, transparent);
   border-radius: 4px;
   background: transparent;
   padding: 4px 8px;
@@ -259,12 +283,12 @@ html:not(.dark) {
 }
 
 .news-card {
-  /* 强调色变量，默认主色，由板块修饰类覆盖 */
-  --card-accent: #00e599;
-  --card-border: rgba(0, 229, 153, 0.2);
-  --card-border-hover: rgba(0, 229, 153, 0.5);
-  --card-soft: rgba(0, 229, 153, 0.09);
-  --card-wash: rgba(0, 229, 153, 0.05);
+  /* 强调色默认随品牌色，板块修饰类只改 --card-accent，其余比例由 color-mix 派生，明暗自适应 */
+  --card-accent: var(--vp-c-brand-1);
+  --card-border: color-mix(in srgb, var(--card-accent) 22%, transparent);
+  --card-border-hover: color-mix(in srgb, var(--card-accent) 55%, transparent);
+  --card-soft: color-mix(in srgb, var(--card-accent) 10%, transparent);
+  --card-wash: color-mix(in srgb, var(--card-accent) 6%, transparent);
 
   margin: 14px 0;
   padding: 14px 16px;
@@ -278,42 +302,17 @@ html:not(.dark) {
   background: var(--card-wash);
 }
 
-/* 五个板块各一套配色：行业洞察 · 精选教程 · 开源项目 · 工程实战 · 顶会前沿 */
-.news-card.card-insight {
-  --card-accent: #00e599;
-  --card-border: rgba(0, 229, 153, 0.2);
-  --card-border-hover: rgba(0, 229, 153, 0.5);
-  --card-soft: rgba(0, 229, 153, 0.09);
-  --card-wash: rgba(0, 229, 153, 0.05);
-}
-.news-card.card-tutorial {
-  --card-accent: #22d3ee;
-  --card-border: rgba(34, 211, 238, 0.24);
-  --card-border-hover: rgba(34, 211, 238, 0.55);
-  --card-soft: rgba(34, 211, 238, 0.1);
-  --card-wash: rgba(34, 211, 238, 0.06);
-}
-.news-card.card-opensource {
-  --card-accent: #a78bfa;
-  --card-border: rgba(167, 139, 250, 0.26);
-  --card-border-hover: rgba(167, 139, 250, 0.6);
-  --card-soft: rgba(167, 139, 250, 0.12);
-  --card-wash: rgba(167, 139, 250, 0.07);
-}
-.news-card.card-practice {
-  --card-accent: #fbbf24;
-  --card-border: rgba(251, 191, 36, 0.26);
-  --card-border-hover: rgba(251, 191, 36, 0.6);
-  --card-soft: rgba(251, 191, 36, 0.12);
-  --card-wash: rgba(251, 191, 36, 0.07);
-}
-.news-card.card-paper {
-  --card-accent: #f472b6;
-  --card-border: rgba(244, 114, 182, 0.26);
-  --card-border-hover: rgba(244, 114, 182, 0.6);
-  --card-soft: rgba(244, 114, 182, 0.12);
-  --card-wash: rgba(244, 114, 182, 0.07);
-}
+/* 五个板块各一套强调色：色相固定，明暗随模式切换（浅色用 600 档保可读，暗色用霓虹档） */
+.news-card.card-insight { --card-accent: #059669; }
+.news-card.card-tutorial { --card-accent: #0891b2; }
+.news-card.card-opensource { --card-accent: #7c3aed; }
+.news-card.card-practice { --card-accent: #d97706; }
+.news-card.card-paper { --card-accent: #db2777; }
+.dark .news-card.card-insight { --card-accent: #00e599; }
+.dark .news-card.card-tutorial { --card-accent: #22d3ee; }
+.dark .news-card.card-opensource { --card-accent: #a78bfa; }
+.dark .news-card.card-practice { --card-accent: #fbbf24; }
+.dark .news-card.card-paper { --card-accent: #f472b6; }
 
 /* 卡片内标题：紧贴头部，去掉默认大间距 */
 .vp-doc .news-card > h3:first-child {

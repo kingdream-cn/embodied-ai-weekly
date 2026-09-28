@@ -8,8 +8,8 @@ export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
 
-  // 极简黑客科技风：强制暗色终端模式
-  appearance: 'force-dark',
+  // 支持明暗切换，默认暗色（青绿霓虹），可切到图一风格的浅色模式
+  appearance: 'dark',
 
   // GitHub Pages 项目站点部署路径（owner.github.io/embodied-ai-weekly/）
   base: '/embodied-ai-weekly/',
