@@ -8,7 +8,7 @@ export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
 
-  // 支持明暗切换，默认暗色（青绿霓虹），可切到图一风格的浅色模式
+  // 支持明暗切换，默认暗色（钉钉风），可切到白底蓝链的浅色模式
   appearance: 'dark',
 
   // GitHub Pages 项目站点部署路径（owner.github.io/embodied-ai-weekly/）
@@ -19,7 +19,7 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
-    ['meta', { name: 'theme-color', content: '#00e599' }],
+    ['meta', { name: 'theme-color', content: '#1677ff' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: '具身智能周刊' }],
     ['meta', { property: 'og:description', content: 'Embodied AI Weekly — 每周追踪具身智能前沿进展' }],
@@ -40,6 +40,14 @@ export default defineConfig({
         items: [
           { text: '首页', link: '/' },
           { text: '往期周刊', link: '/issues/' },
+        ],
+      },
+      {
+        text: '2026 年',
+        items: [
+          { text: '第 39 期', link: '/issues/issue-39' },
+          { text: '第 38 期', link: '/issues/issue-38' },
+          { text: '第 37 期', link: '/issues/issue-37' },
         ],
       },
     ],
