@@ -287,28 +287,24 @@ html:not(.dark) {
 }
 .news-card:hover {
   border-color: var(--vp-c-brand-1);
-  background: #f2f7ff;
 }
 
-/* 五个板块各一套淡彩背景（钉钉式柔和色：浅色暖淡彩，暗色深阶中性） */
-.news-card.card-insight    { --card-bg: #fffbf0; --card-border: #f2e9d2; }
-.news-card.card-tutorial   { --card-bg: #f7f8fa; --card-border: #eceef2; }
-.news-card.card-opensource { --card-bg: #fff5f7; --card-border: #f5e4e9; }
-.news-card.card-practice   { --card-bg: #f6f8fb; --card-border: #e7ecf3; }
-.news-card.card-paper      { --card-bg: #f5f7fa; --card-border: #e6ecf4; }
+/* 五个板块各一套固定淡彩背景（对齐钉钉：行业洞察米黄 / 教程浅灰 / 开源淡粉 / 实战淡蓝 / 论文淡青绿） */
+.news-card.card-insight    { --card-bg: #fff8e6; --card-border: #f3e3bd; }
+.news-card.card-tutorial   { --card-bg: #f7f8fa; --card-border: #e8eaee; }
+.news-card.card-opensource { --card-bg: #fff0f3; --card-border: #f5d8df; }
+.news-card.card-practice   { --card-bg: #eef4ff; --card-border: #d7e5f7; }
+.news-card.card-paper      { --card-bg: #e9f7f0; --card-border: #cfeade; }
 
 .dark .news-card {
   --card-bg: #1f2228;
   --card-border: #2a2e36;
 }
-.dark .news-card:hover {
-  background: #23262e;
-}
-.dark .news-card.card-insight    { --card-bg: #262219; --card-border: #3b3420; }
+.dark .news-card.card-insight    { --card-bg: #2a2416; --card-border: #3d351f; }
 .dark .news-card.card-tutorial   { --card-bg: #1f2228; --card-border: #2a2e36; }
-.dark .news-card.card-opensource { --card-bg: #251f22; --card-border: #3b2c31; }
-.dark .news-card.card-practice   { --card-bg: #202228; --card-border: #2c313a; }
-.dark .news-card.card-paper      { --card-bg: #1e232a; --card-border: #2a323d; }
+.dark .news-card.card-opensource { --card-bg: #2a2024; --card-border: #3d2c32; }
+.dark .news-card.card-practice   { --card-bg: #1c2431; --card-border: #2b364a; }
+.dark .news-card.card-paper      { --card-bg: #1c2a23; --card-border: #2b3e33; }
 
 /* 卡片内标题：紧贴头部，去掉默认大间距 */
 .vp-doc .news-card > h3:first-child {
