@@ -45,6 +45,7 @@ export default defineConfig({
       {
         text: '2026 年',
         items: [
+          { text: '第 41 期', link: '/issues/issue-41' },
           { text: '第 40 期', link: '/issues/issue-40' },
           { text: '第 39 期', link: '/issues/issue-39' },
           { text: '第 38 期', link: '/issues/issue-38' },
