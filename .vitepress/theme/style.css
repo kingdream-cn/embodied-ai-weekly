@@ -32,6 +32,10 @@
     'SF Mono', 'SFMono-Regular', Menlo, Consolas, 'Sarasa Mono SC',
     'Noto Sans Mono CJK SC', 'DejaVu Sans Mono', 'Liberation Mono',
     'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', monospace;
+  /* 衬线：正文阅读区专用，优先系统原生衬线栈（Times New Roman / 宋体 等） */
+  --vp-font-family-serif: 'Times New Roman', 'Songti SC', 'STSong', 'SimSun',
+    'Noto Serif CJK SC', 'Source Han Serif SC', 'Source Han Serif CN',
+    Georgia, 'Liberation Serif', serif;
 
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(120deg, #1677ff 0%, #69a5ff 100%);
@@ -157,6 +161,12 @@ html:not(.dark) {
 /* 中文正文放宽行距，长段落更耐读 */
 .vp-doc p {
   line-height: 1.85;
+}
+
+/* 正文衬线：阅读区段落与要点列表改用系统衬线栈，字号/行高/字重/颜色保持不变 */
+.vp-doc p,
+.vp-doc .news-card ul li {
+  font-family: var(--vp-font-family-serif);
 }
 
 ::selection {
