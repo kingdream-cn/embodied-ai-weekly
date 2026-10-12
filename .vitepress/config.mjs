@@ -45,6 +45,7 @@ export default defineConfig({
       {
         text: '2026 年',
         items: [
+          { text: '第 42 期', link: '/issues/issue-42' },
           { text: '第 41 期', link: '/issues/issue-41' },
           { text: '第 40 期', link: '/issues/issue-40' },
           { text: '第 39 期', link: '/issues/issue-39' },
@@ -93,7 +94,7 @@ export default defineConfig({
       })
 
       // 周刊条目卡片容器：::: card [板块标识]
-      // 板块标识（insight / tutorial / opensource / practice / paper）决定卡片配色
+      // 板块标识（insight / tutorial / opensource / practice / review / paper）决定卡片配色
       md.use(container, 'card', {
         render(tokens, idx) {
           const token = tokens[idx]
