@@ -299,12 +299,13 @@ html:not(.dark) {
   border-color: var(--vp-c-brand-1);
 }
 
-/* 各板块一套固定淡彩背景（对齐钉钉：行业洞察米黄 / 教程浅灰 / 开源淡粉 / 实战淡蓝 / 硬件测评淡紫 / 论文淡青绿），相邻板块避免撞色 */
+/* 各板块一套固定淡彩背景（对齐钉钉：行业洞察米黄 / 教程浅灰 / 开源淡粉 / 实战淡蓝 / 硬件测评淡紫 / 极客茶水间淡咖 / 论文淡青绿），相邻板块避免撞色 */
 .news-card.card-insight    { --card-bg: #fff8e6; --card-border: #f3e3bd; }
 .news-card.card-tutorial   { --card-bg: #f7f8fa; --card-border: #e8eaee; }
 .news-card.card-opensource { --card-bg: #fff0f3; --card-border: #f5d8df; }
 .news-card.card-practice   { --card-bg: #eef4ff; --card-border: #d7e5f7; }
 .news-card.card-review     { --card-bg: #f4f1ff; --card-border: #ded6f2; }
+.news-card.card-lounge     { --card-bg: #fdf3ea; --card-border: #f0dfc9; }
 .news-card.card-paper      { --card-bg: #e9f7f0; --card-border: #cfeade; }
 
 .dark .news-card {
@@ -316,6 +317,7 @@ html:not(.dark) {
 .dark .news-card.card-opensource { --card-bg: #2a2024; --card-border: #3d2c32; }
 .dark .news-card.card-practice   { --card-bg: #1c2431; --card-border: #2b364a; }
 .dark .news-card.card-review     { --card-bg: #241f2e; --card-border: #362d45; }
+.dark .news-card.card-lounge     { --card-bg: #2a231c; --card-border: #3d3327; }
 .dark .news-card.card-paper      { --card-bg: #1c2a23; --card-border: #2b3e33; }
 
 /* 卡片内标题：紧贴头部，去掉默认大间距 */
