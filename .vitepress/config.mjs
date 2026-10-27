@@ -48,6 +48,7 @@ export default defineConfig({
       {
         text: '2026 年',
         items: [
+          { text: '第 44 期 · 机器鸭专刊', link: '/issues/issue-44' },
           { text: '第 43 期', link: '/issues/issue-43' },
           { text: '第 42 期', link: '/issues/issue-42' },
           { text: '第 41 期', link: '/issues/issue-41' },
