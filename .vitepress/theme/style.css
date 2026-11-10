@@ -204,6 +204,14 @@ html:not(.dark) {
 .dark .issue-card:hover {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
 }
+@media (prefers-reduced-motion: reduce) {
+  .issue-card {
+    transition: none;
+  }
+  .issue-card:hover {
+    transform: none;
+  }
+}
 .issue-card .cover {
   aspect-ratio: 16 / 9;
   background-size: cover;
@@ -273,7 +281,7 @@ html:not(.dark) {
 .key-points p strong {
   display: inline-block;
   color: var(--vp-c-brand-1);
-  border: 1px solid rgba(0, 229, 153, 0.35);
+  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 35%, transparent);
   border-radius: 4px;
   background: transparent;
   padding: 1px 8px;
@@ -380,11 +388,6 @@ html:not(.dark) {
 .vp-doc .news-card ul li strong {
   color: var(--vp-c-text-1);
   font-weight: 700;
-}
-/* 行内重点词：保持正文色，仅加粗；「核心亮点：/团队参考：」标签为纯加粗冒号式，不带底色 */
-.vp-doc .news-card ul li > strong:first-child {
-  font-weight: 700;
-  color: var(--vp-c-text-1);
 }
 
 /* 卡片内提示（来源复核提醒等） */

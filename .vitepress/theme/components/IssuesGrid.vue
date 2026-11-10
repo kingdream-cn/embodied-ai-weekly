@@ -8,15 +8,25 @@ function fmt(s) {
   if (Number.isNaN(d.getTime())) return s
   return `${d.getUTCFullYear()}.${String(d.getUTCMonth() + 1).padStart(2, '0')}.${String(d.getUTCDate()).padStart(2, '0')}`
 }
+
+function isoDate(s) {
+  const d = new Date(s)
+  return Number.isNaN(d.getTime()) ? undefined : d.toISOString().slice(0, 10)
+}
 </script>
 
 <template>
   <div class="issues-grid">
     <a v-for="p in posts" :key="p.url" :href="withBase(p.url)" class="issue-card">
-      <div v-if="p.cover" class="cover" :style="{ backgroundImage: `url(${p.cover})` }"></div>
+      <div
+        v-if="p.cover"
+        class="cover"
+        :style="{ backgroundImage: `url(${withBase(p.cover)})` }"
+        aria-hidden="true"
+      ></div>
       <div class="card-body">
         <div class="card-meta">
-          <time>{{ fmt(p.date) }}</time>
+          <time :datetime="isoDate(p.date)">{{ fmt(p.date) }}</time>
           <span v-for="t in p.tags" :key="t" class="tag">{{ t }}</span>
         </div>
         <h3 class="card-title">{{ p.title }}</h3>

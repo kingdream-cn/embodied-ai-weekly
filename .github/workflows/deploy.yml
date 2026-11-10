@@ -30,13 +30,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 部署为「项目站点」(owner.github.io/<repo>) 时，需按仓库名自动设置 base。
-      # 若部署为「用户/组织站点」(owner.github.io)，请将 BASE 固定为 '/'
+      # 部署为「项目站点」(owner.github.io/<repo>) 时按仓库名注入 base；
+      # 若部署为「用户/组织站点」(owner.github.io)，将下行 BASE 改为 '/'
       - name: Build
         run: npm run docs:build
         env:
           BASE: /${{ github.event.repository.name }}/
-          SITE_URL: https://${{ github.repository_owner }}.github.io
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

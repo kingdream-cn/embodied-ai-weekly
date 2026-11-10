@@ -1,6 +1,16 @@
 import { defineConfig } from 'vitepress'
 import container from 'markdown-it-container'
 
+// GitHub Pages 项目站点部署在 owner.github.io/<repo>/ 下，页面与静态资源链接都需带仓库名前缀。
+// CI 通过 BASE 注入仓库名；本地默认与远程仓库保持一致，部署到根路径时将 BASE 设为 '/'。
+function normalizeBase(value) {
+  const path = value.replace(/^\/+|\/+$/g, '')
+  return path ? `/${path}/` : '/'
+}
+
+const base = normalizeBase(process.env.BASE || '/embodied-ai-weekly/')
+const CARD_KIND_RE = /^[a-z][a-z0-9-]*$/
+
 export default defineConfig({
   // 网站标题/描述
   title: '具身智能周刊',
@@ -12,7 +22,7 @@ export default defineConfig({
   appearance: { initialValue: 'light' },
 
   // GitHub Pages 项目站点部署路径（owner.github.io/embodied-ai-weekly/）
-  base: '/embodied-ai-weekly/',
+  base,
 
   // 显式指定构建输出目录，与 GitHub Actions 上传路径保持一致
   outDir: 'dist',
@@ -21,7 +31,7 @@ export default defineConfig({
   srcExclude: ['README.md'],
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}logo.svg` }],
     ['meta', { name: 'theme-color', content: '#1677ff' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: '具身智能周刊' }],
@@ -100,13 +110,15 @@ export default defineConfig({
       })
 
       // 周刊条目卡片容器：::: card [板块标识]
-      // 板块标识（insight / tutorial / opensource / practice / review / lounge / paper）决定卡片配色
+      // 板块标识（insight / tutorial / opensource / practice / review / lounge / paper）决定卡片配色，
+      // 仅接受小写字母、数字与连字符，避免异常标识被直接拼进 class 属性
       md.use(container, 'card', {
         render(tokens, idx) {
           const token = tokens[idx]
           if (token.nesting === 1) {
             const kind = token.info.trim().split(/\s+/)[1]
-            return `<div class="news-card${kind ? ` card-${kind}` : ''}">\n`
+            const modifier = kind && CARD_KIND_RE.test(kind) ? ` card-${kind}` : ''
+            return `<div class="news-card${modifier}">\n`
           }
           return '</div>\n'
         },
