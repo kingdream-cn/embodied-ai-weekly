@@ -1,0 +1,90 @@
+name: 周刊投稿
+description: 推荐具身智能内容，提交后由编辑审核整理
+title: "[投稿] "
+# Initialize this label separately; Issue Forms do not create labels.
+labels: ["weekly:submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        每周一人至少推荐一条。请提供可公开的信息与真实来源。
+        GitHub Issue 是公开的，请勿提交内部资料、个人隐私或密钥。
+        提交人由 GitHub 作者数字 ID 核验；周次由系统计算，提交不代表审核通过。
+        字段标题用于版本化解析，请勿修改或在答案中添加同名三级标题。
+  - type: dropdown
+    id: form_version
+    attributes:
+      label: 表单版本
+      options: ["v1"]
+    validations:
+      required: true
+  - type: input
+    id: content_title
+    attributes:
+      label: 内容标题
+      description: 5–160 字符
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: 原文链接
+      placeholder: "https://..."
+      description: 单个公开 HTTPS 链接，不得含访问令牌或密码
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: 推荐板块
+      options:
+        - 行业洞察
+        - 精选教程 & 学习资源
+        - 开源项目 & 行业案例
+        - 工程实战 & 踩坑记录
+        - 硬件测评 & 选型雷达
+        - 顶会前沿 & 论文速递
+    validations:
+      required: true
+  - type: dropdown
+    id: carrier
+    attributes:
+      label: 载体类型
+      options: [论文, 文章, 视频, 开源项目, 硬件资料, 其他]
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: 一句话推荐理由
+      description: 20–500 字符，说明为什么值得收录
+    validations:
+      required: true
+  - type: textarea
+    id: source_notes
+    attributes:
+      label: 原始要点或可核对摘录
+      description: 50–6000 字符；涉及实验数据时标明出处，不要粘贴保密或大段受版权保护内容
+    validations:
+      required: true
+  - type: textarea
+    id: team_reference
+    attributes:
+      label: 对团队的参考建议
+      description: 20–1000 字符，若无法判断可明确写“暂不确定”
+    validations:
+      required: true
+  - type: textarea
+    id: extra_urls
+    attributes:
+      label: 补充链接
+      description: 选填，每行一个 HTTPS 链接，最多 5 个
+  - type: checkboxes
+    id: declarations
+    attributes:
+      label: 内容来源与公开确认
+      options:
+        - label: 我已阅读或实际查看原文，并提供真实来源
+          required: true
+        - label: 我确认以上信息可公开，不包含内部资料、隐私或密钥
+          required: true

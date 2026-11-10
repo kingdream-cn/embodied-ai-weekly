@@ -219,6 +219,11 @@ embodied-ai-weekly/
 
 欢迎任何形式的贡献，感谢你帮助这份周刊变得更好！
 
+### 团队每周投稿
+
+- 通过 [周刊投稿表单](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) 提交原文链接、推荐理由与可核对要点。提交后由编辑审核，提交不等于入刊。
+- 投稿 Issue 在公开仓库可见，请只填写可公开内容，不包含内部资料、个人隐私或密钥。
+
 ### 推荐选题 / 内容勘误
 
 - 发现值得收录的文章、视频、开源项目，或发现正文链接失效、描述有误，请直接提交 [Issue](https://github.com/kingdream-cn/embodied-ai-weekly/issues)；
