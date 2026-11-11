@@ -27,8 +27,8 @@ export default defineConfig({
   // 显式指定构建输出目录，与 GitHub Actions 上传路径保持一致
   outDir: 'dist',
 
-  // 排除仓库根目录的 README.md，避免被构建为站点页面并进入搜索索引
-  srcExclude: ['README.md'],
+  // 仓库说明与协作指引仅在 GitHub 阅读，不生成站点页面或搜索条目
+  srcExclude: ['README.md', 'AGENTS.md'],
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}logo.svg` }],
