@@ -22,7 +22,7 @@
 
 | 期次 | 日期 | 本期看点 |
 | --- | --- | --- |
-| [第 47 期](issues/issue-47.md) | 2026-11-16 | 北京具身产业行动方案、Pixel 系统设计、Praxis-1 开放权重、Holoscan 控制时序与 FAFM 频域动作；补充感知与 VLA 教程、视触觉和 R2S2R 回顾，以及开发工具实践。 |
+| [第 47 期](issues/issue-47.md) | 2026-11-16 | 视触觉产业门槛；具身感知、LeRobot 与 Holoscan 教程；TokenEconomizer 开源工具及机器人应用案例；Pixel、Praxis-1 和 FAFM 的系统与动作建模研究。 |
 | [第 46 期](issues/issue-46.md) | 2026-11-09 | 遥操作数采的时间对齐、仿真与实景路线之争、云深处绝影 X50 重载四足，以及清华 CLEAR Lab 将人类经验转化为可学习的物理监督。 |
 | [第 45 期](issues/issue-45.md) | 2026-11-02 | 智元 Worken 物理劳动度量、GO-3 Preview 具身基座、启元 One Scan is Enough 免示范导航与小鹏 IRON 第二代 VLA 端侧部署。 |
 
