@@ -22,7 +22,7 @@
 
 **收集：2026-11-15～11-21｜截稿：11 月 21 日 15:00（北京时间）**
 
-[提交投稿](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) · [本期全部](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22) · [待审核](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BE%85%E5%AE%A1%E6%A0%B8) · [已收录](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%B7%B2%E6%94%B6%E5%BD%95) · [弃用](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BC%83%E7%94%A8) · [各期归档](https://github.com/kingdream-cn/embodied-ai-weekly/milestones?state=all)
+[提交投稿](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) · [本期全部](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22) · [待审核](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BE%85%E5%AE%A1%E6%A0%B8) · [已收录](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%B7%B2%E6%94%B6%E5%BD%95) · [弃用](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BC%83%E7%94%A8) · [期次列表（新期在前）](https://github.com/kingdream-cn/embodied-ai-weekly/milestones?direction=desc&sort=title&state=open)
 
 每期一个 **Milestone**；投稿状态使用 **待审核 → 已收录 / 弃用**，三选一。提交后由编辑绑定期次；投稿不等于收录。日期表示收集区间，截稿后的投稿由编辑确认期次。
 
