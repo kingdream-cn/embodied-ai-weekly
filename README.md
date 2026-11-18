@@ -231,6 +231,7 @@ tags:
 ```text
 embodied-ai-weekly/
 ├── .github/workflows/deploy.yml   # GitHub Actions 自动部署工作流
+├── .github/workflows/update-milestone-completion.yml  # 同步期次自定义完成度
 ├── .vitepress/
 │   ├── config.mjs                 # 站点配置（导航 / 侧边栏 / 搜索 / 卡片容器）
 │   └── theme/
