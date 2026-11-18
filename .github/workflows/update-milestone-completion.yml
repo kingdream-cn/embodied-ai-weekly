@@ -3,6 +3,8 @@ name: Update submission milestone completion
 on:
   issues:
     types: [opened, closed, reopened, milestoned, demilestoned]
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
