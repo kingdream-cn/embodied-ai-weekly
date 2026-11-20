@@ -43,7 +43,13 @@ jobs:
                 },
               );
 
-              const submissions = issues.filter((issue) => !issue.pull_request);
+              const submissions = issues.filter((issue) => {
+                if (issue.pull_request) return false;
+                const body = issue.body || '';
+                return issue.title.startsWith('[投稿]')
+                  || (/^### 表单版本\s+v1\s*$/m.test(body)
+                    && /^### 原文链接\s*$/m.test(body));
+              });
               const total = submissions.length;
               const closed = submissions.filter((issue) => issue.state === 'closed').length;
               const completion = total === 0 ? null : Math.round((1 - closed / total) * 100);

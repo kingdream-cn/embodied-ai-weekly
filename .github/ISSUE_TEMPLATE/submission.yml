@@ -1,7 +1,7 @@
 name: 周刊投稿
 description: 推荐具身智能内容，提交后由编辑审核整理
 title: "[投稿] "
-# Initialize this label separately; Issue Forms do not create labels.
+# The workflow creates this label if it is missing from the repository.
 labels: ["待审核"]
 body:
   - type: markdown

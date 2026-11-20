@@ -1,0 +1,106 @@
+name: Manage submission status labels
+
+on:
+  issues:
+    types: [opened, labeled]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+concurrency:
+  group: submission-status-${{ github.event.issue.number || 'repository' }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: ${{ github.event_name != 'issues' || github.event.issue.pull_request == null }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure labels and maintain one review status per submission
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const statusLabels = [
+              { name: '待审核', color: 'fbca04', description: '投稿已收到，等待编辑审核。' },
+              { name: '已收录', color: '0e8a16', description: '编辑已确认将投稿纳入周刊。' },
+              { name: '弃用', color: 'b60205', description: '编辑已确认本期不采用该投稿。' },
+            ];
+            const statusNames = new Set(statusLabels.map(({ name }) => name));
+            const { owner, repo } = context.repo;
+
+            const existingLabels = await github.paginate(
+              github.rest.issues.listLabelsForRepo,
+              { owner, repo, per_page: 100 },
+            );
+            const existingNames = new Set(existingLabels.map(({ name }) => name));
+
+            for (const label of statusLabels) {
+              if (existingNames.has(label.name)) continue;
+              try {
+                await github.rest.issues.createLabel({ owner, repo, ...label });
+                existingNames.add(label.name);
+                core.info(`Created missing label: ${label.name}`);
+              } catch (error) {
+                // A simultaneous run may have created the label after the list call.
+                if (error.status !== 422) throw error;
+                await github.rest.issues.getLabel({ owner, repo, name: label.name });
+                existingNames.add(label.name);
+              }
+            }
+
+            if (context.eventName !== 'issues') return;
+
+            const issue = context.payload.issue;
+            if (issue.pull_request) return;
+            const body = issue.body || '';
+            const isSubmission = /^(?:\[投稿\]|【投稿】)/.test(issue.title)
+              || (/^### 表单版本\s+v1\s*$/m.test(body)
+                && /^### 原文链接\s*$/m.test(body));
+            if (!isSubmission) {
+              core.info(`Issue #${issue.number} is not a weekly submission; skipping.`);
+              return;
+            }
+
+            let selectedStatus;
+            if (context.payload.action === 'opened') {
+              selectedStatus = '待审核';
+            } else if (context.payload.action === 'labeled'
+              && statusNames.has(context.payload.label?.name)) {
+              selectedStatus = context.payload.label.name;
+            } else {
+              core.info('A non-status label changed; no status update is needed.');
+              return;
+            }
+
+            const { data: currentIssue } = await github.rest.issues.get({
+              owner,
+              repo,
+              issue_number: issue.number,
+            });
+            const currentStatusLabels = currentIssue.labels
+              .map(({ name }) => name)
+              .filter((name) => statusNames.has(name));
+
+            for (const name of currentStatusLabels) {
+              if (name !== selectedStatus) {
+                await github.rest.issues.removeLabel({
+                  owner,
+                  repo,
+                  issue_number: issue.number,
+                  name,
+                });
+              }
+            }
+
+            if (!currentStatusLabels.includes(selectedStatus)) {
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: issue.number,
+                labels: [selectedStatus],
+              });
+            }
+            core.info(`Issue #${issue.number} status: ${selectedStatus}`);

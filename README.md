@@ -24,7 +24,9 @@
 
 [提交投稿](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) · [本期全部](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22) · [待审核](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BE%85%E5%AE%A1%E6%A0%B8) · [已收录](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%B7%B2%E6%94%B6%E5%BD%95) · [弃用](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BC%83%E7%94%A8) · [期次列表（新期在前）](https://github.com/kingdream-cn/embodied-ai-weekly/milestones?direction=desc&sort=title&state=open)
 
-每期一个 **Milestone**；投稿状态使用 **待审核 → 已收录 / 弃用**，三选一。提交后由编辑绑定期次；投稿不等于收录。日期表示收集区间，截稿后的投稿由编辑确认期次。
+每期一个 **Milestone**。通过“周刊投稿”表单提交时，GitHub 默认添加 **待审核**；工作流会在主分支初始化三个审核标签，并为漏贴标签的新投稿补上“待审核”。
+
+维护者可在 Issue 右侧 **Labels（标签）** 手动选择 **待审核**、**已收录** 或 **弃用**。添加新状态后，工作流会自动移除另外两个状态标签。需要关闭时，收录用 **completed**，不采用用 **not planned**。编辑按收集日期绑定期次，并确认截稿后的投稿归属。
 
 <details>
 <summary>编辑快捷搜索（可直接复制）</summary>
@@ -232,6 +234,7 @@ tags:
 embodied-ai-weekly/
 ├── .github/workflows/deploy.yml   # GitHub Actions 自动部署工作流
 ├── .github/workflows/update-milestone-completion.yml  # 同步期次自定义完成度
+├── .github/workflows/manage-submission-status-labels.yml  # 初始化审核标签并保证每篇投稿仅有一个状态
 ├── .vitepress/
 │   ├── config.mjs                 # 站点配置（导航 / 侧边栏 / 搜索 / 卡片容器）
 │   └── theme/
