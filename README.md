@@ -18,6 +18,35 @@
 
 </div>
 
+## 本期投稿 · 第 48 期
+
+**收集：2026-11-15～11-21｜截稿：11 月 21 日 15:00（北京时间）**
+
+[提交投稿](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) · [本期全部](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22) · [待审核](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BE%85%E5%AE%A1%E6%A0%B8) · [已收录](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%B7%B2%E6%94%B6%E5%BD%95) · [弃用](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BC%83%E7%94%A8) · [期次列表（新期在前）](https://github.com/kingdream-cn/embodied-ai-weekly/milestones?direction=desc&sort=title&state=open)
+
+每期一个 **Milestone**。通过“周刊投稿”表单提交时，GitHub 默认添加 **待审核**；工作流会在主分支初始化三个审核标签，并为漏贴标签的新投稿补上“待审核”。
+
+维护者可在 Issue 右侧 **Labels（标签）** 手动选择 **待审核**、**已收录** 或 **弃用**。添加新状态后，工作流会自动移除另外两个状态标签。需要关闭时，收录用 **completed**，不采用用 **not planned**。编辑按收集日期绑定期次，并确认截稿后的投稿归属。
+
+<details>
+<summary>编辑快捷搜索（可直接复制）</summary>
+
+| 用途 | GitHub Issues 搜索语句 |
+| --- | --- |
+| 本期待审核 | `is:issue milestone:"第48期" label:待审核` |
+| 本期已收录（含已关闭） | `is:issue milestone:"第48期" label:已收录` |
+| 本期弃用（含已关闭） | `is:issue milestone:"第48期" label:弃用` |
+| 待归期投稿 | `is:issue is:open no:milestone "[投稿]" in:title` |
+| 全部未归期 Issue（含改过标题的投稿） | `is:issue is:open no:milestone` |
+
+搜索范围选本仓库；跨仓库搜索时加 `repo:kingdream-cn/embodied-ai-weekly`。查看已收录或弃用时保留上述语句，避免额外加 `is:open` 漏掉已关闭稿件。
+
+换期时创建新 Milestone，并更新本节期号、日期和搜索链接；发刊后关闭对应 Milestone。新投稿目前由编辑手动归期。
+
+> **完成度口径**：GitHub 原生进度条按“已关闭 ÷ 总数”计算，不能改公式。仓库工作流会将编辑使用的“完成度”同步到 Milestone 描述首行，公式为 `（1 - 已关闭投稿数 ÷ 总投稿数）× 100%`；因此第 47 期 20 条投稿中关闭 1 条时显示 **95%**。
+
+</details>
+
 ## 近期周刊
 
 | 期次 | 日期 | 本期看点 |
@@ -204,6 +233,8 @@ tags:
 ```text
 embodied-ai-weekly/
 ├── .github/workflows/deploy.yml   # GitHub Actions 自动部署工作流
+├── .github/workflows/update-milestone-completion.yml  # 同步期次自定义完成度
+├── .github/workflows/manage-submission-status-labels.yml  # 初始化审核标签并保证每篇投稿仅有一个状态
 ├── .vitepress/
 │   ├── config.mjs                 # 站点配置（导航 / 侧边栏 / 搜索 / 卡片容器）
 │   └── theme/
@@ -230,8 +261,7 @@ embodied-ai-weekly/
 
 ### 团队每周投稿
 
-- 本周（2026-11-09 至 11-15）收集的素材供下周第 46 期审核选用；下周（11-16 至 11-22）收集供再下一周第 47 期选用，均由负责人审核发布。
-- 每周五 08:00 为计划提醒时间，周六 15:00 截止（北京时间）；提醒通知尚未启用。
+- 当前收集区间、期号及截稿时间见上方「本期投稿」，从本期入口直接筛选稿件。
 - 通过 [周刊投稿表单](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) 提交原文链接、推荐理由与可核对要点。提交后由编辑审核，提交不等于入刊。
 - 投稿 Issue 在公开仓库可见，请只填写可公开内容，不包含内部资料、个人隐私或密钥。
 

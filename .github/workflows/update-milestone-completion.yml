@@ -1,0 +1,81 @@
+name: Update submission milestone completion
+
+on:
+  issues:
+    types: [opened, closed, reopened, milestoned, demilestoned]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+concurrency:
+  group: submission-milestone-completion
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync custom completion in milestone descriptions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const startMarker = '<!-- weekly-submission-completion:start -->';
+            const endMarker = '<!-- weekly-submission-completion:end -->';
+            const { owner, repo } = context.repo;
+
+            const milestones = await github.paginate(
+              github.rest.issues.listMilestones,
+              { owner, repo, state: 'all', per_page: 100 },
+            );
+
+            for (const milestone of milestones) {
+              const issues = await github.paginate(
+                github.rest.issues.listForRepo,
+                {
+                  owner,
+                  repo,
+                  milestone: milestone.number,
+                  state: 'all',
+                  per_page: 100,
+                },
+              );
+
+              const submissions = issues.filter((issue) => {
+                if (issue.pull_request) return false;
+                const body = issue.body || '';
+                return issue.title.startsWith('[投稿]')
+                  || (/^### 表单版本\s+v1\s*$/m.test(body)
+                    && /^### 原文链接\s*$/m.test(body));
+              });
+              const total = submissions.length;
+              const closed = submissions.filter((issue) => issue.state === 'closed').length;
+              const completion = total === 0 ? null : Math.round((1 - closed / total) * 100);
+              const completionLine = total === 0
+                ? '**完成度：暂无投稿**'
+                : `**完成度：${completion}%**（1 - 已关闭投稿数 ${closed} ÷ 总投稿数 ${total} × 100%）`;
+              const block = [startMarker, completionLine, endMarker].join('\n');
+
+              const current = milestone.description || '';
+              const markerPattern = new RegExp(
+                `${startMarker}[\\s\\S]*?${endMarker}`,
+                'm',
+              );
+              const description = markerPattern.test(current)
+                ? current.replace(markerPattern, block)
+                : [block, current.trim()].filter(Boolean).join('\n\n');
+
+              if (description !== current) {
+                await github.rest.issues.updateMilestone({
+                  owner,
+                  repo,
+                  milestone_number: milestone.number,
+                  description,
+                });
+                core.info(`${milestone.title}: ${completion === null ? '暂无投稿' : `${completion}%`} (${closed}/${total} closed)`);
+              } else {
+                core.info(`${milestone.title}: already up to date`);
+              }
+            }
