@@ -10,7 +10,7 @@ on:
         required: true
         type: number
       completed:
-        description: 私有台账核验的投稿人数（已按成员去重）
+        description: 本期提交过的应交成员人数（按成员去重）
         required: true
         type: number
       expected:
@@ -58,7 +58,8 @@ jobs:
 
             const issue_number = context.payload.issue.number;
             const { data: issue } = await issues.get({ ...repo, issue_number });
-            if (!isSubmission(issue) || issue.milestone) return;
+            const initialMilestone = context.payload.issue.milestone?.number;
+            if (!isSubmission(issue) || issue.milestone?.number !== initialMilestone) return;
             const window = submissionWindow(issue.created_at);
             if (!window) return;
             let milestone = await findMilestone(window.title);
@@ -75,4 +76,6 @@ jobs:
               }
             }
             const { data: current } = await issues.get({ ...repo, issue_number });
-            if (!current.milestone) await issues.update({ ...repo, issue_number, milestone: milestone.number });
+            if (current.milestone?.number === initialMilestone && initialMilestone !== milestone.number) {
+              await issues.update({ ...repo, issue_number, milestone: milestone.number });
+            }

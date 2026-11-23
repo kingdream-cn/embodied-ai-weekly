@@ -32,6 +32,6 @@ export function participationDescription(previous, completed, expected) {
     .replace(/<!-- weekly-submission-completion:start -->[\s\S]*?<!-- weekly-submission-completion:end -->\s*/g, '')
     .replace(/^投稿完成率：[^\n]*(?:\n|$)/m, '').trim();
   const percent = new Intl.NumberFormat('zh-CN', { style: 'percent', maximumFractionDigits: 2 });
-  return [`投稿完成率：${percent.format(completed / expected)}（已核验 ${completed}/${expected} 人）`, details]
+  return [`投稿完成率：${percent.format(completed / expected)}（已投稿 ${completed}/${expected} 人）`, details]
     .filter(Boolean).join('\n\n');
 }
