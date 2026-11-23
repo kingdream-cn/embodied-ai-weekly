@@ -26,7 +26,7 @@ jobs:
             const statusLabels = [
               { name: '待审核', color: 'fbca04', description: '投稿已收到，等待编辑审核。' },
               { name: '已收录', color: '0e8a16', description: '编辑已确认将投稿纳入周刊。' },
-              { name: '弃用', color: 'b60205', description: '编辑已确认本期不采用该投稿。' },
+              { name: '暂不收录', color: 'b60205', description: '本期周刊暂未收录该投稿。' },
             ];
             const statusNames = new Set(statusLabels.map(({ name }) => name));
             const { owner, repo } = context.repo;

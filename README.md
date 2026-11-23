@@ -18,34 +18,15 @@
 
 </div>
 
-## 本期投稿 · 第 48 期
+## 周刊投稿
 
-**收集：2026-11-15～11-21｜截稿：11 月 21 日 15:00（北京时间）**
+[提交投稿](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) · [投稿期次（按名称降序）](https://github.com/kingdream-cn/embodied-ai-weekly/milestones?direction=desc&sort=title&state=open)
 
-[提交投稿](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) · [本期全部](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22) · [待审核](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BE%85%E5%AE%A1%E6%A0%B8) · [已收录](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%B7%B2%E6%94%B6%E5%BD%95) · [弃用](https://github.com/kingdream-cn/embodied-ai-weekly/issues?q=is%3Aissue%20milestone%3A%22%E7%AC%AC48%E6%9C%9F%22%20label%3A%E5%BC%83%E7%94%A8) · [期次列表（新期在前）](https://github.com/kingdream-cn/embodied-ai-weekly/milestones?direction=desc&sort=title&state=open)
+每周六 15:00（北京时间）切换收稿期次。系统按 Issue 创建时间归入 Milestone，恰好在 15:00 提交的稿件归下一期。若从 Milestone 进入投稿，系统仍按创建时间核对期次。维护者可在归期后手动调整。
 
-每期一个 **Milestone**。通过“周刊投稿”表单提交时，GitHub 默认添加 **待审核**；工作流会在主分支初始化三个审核标签，并为漏贴标签的新投稿补上“待审核”。
+新稿默认标为 **待审核**。发刊后按实际刊登内容标为 **已收录** 或 **暂不收录**，并关闭已审核的投稿 Issue。每一期 Milestone 始终保持 **Open**，在描述中注明发刊状态，让当期和往期都能从同一个列表查阅。收稿时间写在期次描述里，历史期次不设 GitHub 截止日期，避免显示逾期。以第 48 期为例，可从期次描述打开 [全部 13 条投稿](https://github.com/kingdream-cn/embodied-ai-weekly/milestone/1?closed=1)。维护者可在 Issue 右侧 **Labels** 切换状态。在 Issues 中可用 `is:issue milestone:"第49期" label:待审核` 筛选，并将期号替换为要查看的一期。
 
-维护者可在 Issue 右侧 **Labels（标签）** 手动选择 **待审核**、**已收录** 或 **弃用**。添加新状态后，工作流会自动移除另外两个状态标签。需要关闭时，收录用 **completed**，不采用用 **not planned**。编辑按收集日期绑定期次，并确认截稿后的投稿归属。
-
-<details>
-<summary>编辑快捷搜索（可直接复制）</summary>
-
-| 用途 | GitHub Issues 搜索语句 |
-| --- | --- |
-| 本期待审核 | `is:issue milestone:"第48期" label:待审核` |
-| 本期已收录（含已关闭） | `is:issue milestone:"第48期" label:已收录` |
-| 本期弃用（含已关闭） | `is:issue milestone:"第48期" label:弃用` |
-| 待归期投稿 | `is:issue is:open no:milestone "[投稿]" in:title` |
-| 全部未归期 Issue（含改过标题的投稿） | `is:issue is:open no:milestone` |
-
-搜索范围选本仓库；跨仓库搜索时加 `repo:kingdream-cn/embodied-ai-weekly`。查看已收录或弃用时保留上述语句，避免额外加 `is:open` 漏掉已关闭稿件。
-
-换期时创建新 Milestone，并更新本节期号、日期和搜索链接；发刊后关闭对应 Milestone。新投稿目前由编辑手动归期。
-
-> **完成度口径**：GitHub 原生进度条按“已关闭 ÷ 总数”计算，不能改公式。仓库工作流会将编辑使用的“完成度”同步到 Milestone 描述首行，公式为 `（1 - 已关闭投稿数 ÷ 总投稿数）× 100%`；因此第 47 期 20 条投稿中关闭 1 条时显示 **95%**。
-
-</details>
+投稿完成率显示在 Milestone 描述首行，按「本期提交过的应交成员人数 ÷ 本期应交人数」计算，同一成员只计一次，编辑是否收录另行统计。维护者可通过 **Route weekly submissions and update participation** 工作流录入期号和两个汇总人数。右侧 GitHub 自带进度条仍按 Issue 和 PR 的关闭比例显示。
 
 ## 近期周刊
 
@@ -233,7 +214,7 @@ tags:
 ```text
 embodied-ai-weekly/
 ├── .github/workflows/deploy.yml   # GitHub Actions 自动部署工作流
-├── .github/workflows/update-milestone-completion.yml  # 同步期次自定义完成度
+├── .github/workflows/update-milestone-completion.yml  # 自动归期并更新投稿人数
 ├── .github/workflows/manage-submission-status-labels.yml  # 初始化审核标签并保证每篇投稿仅有一个状态
 ├── .vitepress/
 │   ├── config.mjs                 # 站点配置（导航 / 侧边栏 / 搜索 / 卡片容器）
