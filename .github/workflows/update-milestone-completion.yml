@@ -1,81 +1,78 @@
-name: Update submission milestone completion
+name: Route weekly submissions and update participation
 
 on:
   issues:
-    types: [opened, closed, reopened, milestoned, demilestoned]
-  push:
-    branches: [main]
+    types: [opened]
   workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 周刊期号（例如 48）
+        required: true
+        type: number
+      completed:
+        description: 私有台账核验的投稿人数（已按成员去重）
+        required: true
+        type: number
+      expected:
+        description: 本期应投稿人数
+        required: true
+        type: number
 
 permissions:
+  contents: read
   issues: write
 
-concurrency:
-  group: submission-milestone-completion
-  cancel-in-progress: true
-
 jobs:
-  update:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Sync custom completion in milestone descriptions
-        uses: actions/github-script@v7
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/github-script@v7
         with:
           script: |
-            const startMarker = '<!-- weekly-submission-completion:start -->';
-            const endMarker = '<!-- weekly-submission-completion:end -->';
-            const { owner, repo } = context.repo;
+            const { submissionWindow, isSubmission, windowDescription, participationDescription } =
+              await import(`${process.env.GITHUB_WORKSPACE}/scripts/submission-milestones.mjs`);
+            const repo = context.repo;
+            const { issues } = github.rest;
+            const findMilestone = async (title) => (await github.paginate(
+              issues.listMilestones, { ...repo, state: 'all', per_page: 100 },
+            )).find((item) => item.title === title);
 
-            const milestones = await github.paginate(
-              github.rest.issues.listMilestones,
-              { owner, repo, state: 'all', per_page: 100 },
-            );
+            if (context.eventName === 'workflow_dispatch') {
+              const { issue_number, completed, expected } = context.payload.inputs;
+              const edition = Number(issue_number);
+              if (!/^\d+$/.test(issue_number) || !Number.isSafeInteger(edition) || edition < 1
+                  || !/^\d+$/.test(completed) || !/^\d+$/.test(expected)) {
+                throw new Error('请填写有效的期号与人数。');
+              }
+              const milestone = await findMilestone(`第${edition}期`);
+              if (!milestone) throw new Error(`找不到第${edition}期 Milestone。`);
+              const description = participationDescription(milestone.description, Number(completed), Number(expected));
+              if (description !== milestone.description) {
+                await issues.updateMilestone({ ...repo, milestone_number: milestone.number, description });
+              }
+              return;
+            }
 
-            for (const milestone of milestones) {
-              const issues = await github.paginate(
-                github.rest.issues.listForRepo,
-                {
-                  owner,
-                  repo,
-                  milestone: milestone.number,
-                  state: 'all',
-                  per_page: 100,
-                },
-              );
-
-              const submissions = issues.filter((issue) => {
-                if (issue.pull_request) return false;
-                const body = issue.body || '';
-                return issue.title.startsWith('[投稿]')
-                  || (/^### 表单版本\s+v1\s*$/m.test(body)
-                    && /^### 原文链接\s*$/m.test(body));
-              });
-              const total = submissions.length;
-              const closed = submissions.filter((issue) => issue.state === 'closed').length;
-              const completion = total === 0 ? null : Math.round((1 - closed / total) * 100);
-              const completionLine = total === 0
-                ? '**完成度：暂无投稿**'
-                : `**完成度：${completion}%**（1 - 已关闭投稿数 ${closed} ÷ 总投稿数 ${total} × 100%）`;
-              const block = [startMarker, completionLine, endMarker].join('\n');
-
-              const current = milestone.description || '';
-              const markerPattern = new RegExp(
-                `${startMarker}[\\s\\S]*?${endMarker}`,
-                'm',
-              );
-              const description = markerPattern.test(current)
-                ? current.replace(markerPattern, block)
-                : [block, current.trim()].filter(Boolean).join('\n\n');
-
-              if (description !== current) {
-                await github.rest.issues.updateMilestone({
-                  owner,
-                  repo,
-                  milestone_number: milestone.number,
-                  description,
-                });
-                core.info(`${milestone.title}: ${completion === null ? '暂无投稿' : `${completion}%`} (${closed}/${total} closed)`);
-              } else {
-                core.info(`${milestone.title}: already up to date`);
+            const issue_number = context.payload.issue.number;
+            const { data: issue } = await issues.get({ ...repo, issue_number });
+            if (!isSubmission(issue) || issue.milestone) return;
+            const window = submissionWindow(issue.created_at);
+            if (!window) return;
+            let milestone = await findMilestone(window.title);
+            if (!milestone) {
+              try {
+                ({ data: milestone } = await issues.createMilestone({
+                  ...repo, title: window.title, description: windowDescription(window),
+                  due_on: new Date(window.end).toISOString(),
+                }));
+              } catch (error) {
+                if (error.status !== 422) throw error;
+                milestone = await findMilestone(window.title);
+                if (!milestone) throw error;
               }
             }
+            const { data: current } = await issues.get({ ...repo, issue_number });
+            if (!current.milestone) await issues.update({ ...repo, issue_number, milestone: milestone.number });
