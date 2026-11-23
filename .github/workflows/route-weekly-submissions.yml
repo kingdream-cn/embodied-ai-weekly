@@ -67,7 +67,6 @@ jobs:
               try {
                 ({ data: milestone } = await issues.createMilestone({
                   ...repo, title: window.title, description: windowDescription(window),
-                  due_on: new Date(window.end).toISOString(),
                 }));
               } catch (error) {
                 if (error.status !== 422) throw error;

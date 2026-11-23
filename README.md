@@ -20,11 +20,11 @@
 
 ## 周刊投稿
 
-[提交投稿](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) · [投稿期次（按截止日从近到远）](https://github.com/kingdream-cn/embodied-ai-weekly/milestones?direction=desc&sort=due_date&state=open)
+[提交投稿](https://github.com/kingdream-cn/embodied-ai-weekly/issues/new?template=submission.yml) · [投稿期次（按名称降序）](https://github.com/kingdream-cn/embodied-ai-weekly/milestones?direction=desc&sort=title&state=open)
 
 每周六 15:00（北京时间）切换收稿期次。系统按 Issue 创建时间归入 Milestone，恰好在 15:00 提交的稿件归下一期。若从 Milestone 进入投稿，系统仍按创建时间核对期次。维护者可在归期后手动调整。
 
-新稿默认标为 **待审核**。发刊后按实际刊登内容标为 **已收录** 或 **暂不收录**，并关闭已审核的投稿 Issue。每一期 Milestone 始终保持 **Open**，在描述中注明发刊状态，让当期和往期都能从同一个列表查阅。维护者可在 Issue 右侧 **Labels** 切换状态。在 Issues 中可用 `is:issue milestone:"第49期" label:待审核` 筛选，并将期号替换为要查看的一期。
+新稿默认标为 **待审核**。发刊后按实际刊登内容标为 **已收录** 或 **暂不收录**，并关闭已审核的投稿 Issue。每一期 Milestone 始终保持 **Open**，在描述中注明发刊状态，让当期和往期都能从同一个列表查阅。收稿时间写在期次描述里，历史期次不设 GitHub 截止日期，避免显示逾期。以第 48 期为例，可从期次描述打开 [全部 13 条投稿](https://github.com/kingdream-cn/embodied-ai-weekly/milestone/1?closed=1)。维护者可在 Issue 右侧 **Labels** 切换状态。在 Issues 中可用 `is:issue milestone:"第49期" label:待审核` 筛选，并将期号替换为要查看的一期。
 
 投稿完成率显示在 Milestone 描述首行，按「本期提交过的应交成员人数 ÷ 本期应交人数」计算，同一成员只计一次，编辑是否收录另行统计。维护者可通过 **Route weekly submissions and update participation** 工作流录入期号和两个汇总人数。右侧 GitHub 自带进度条仍按 Issue 和 PR 的关闭比例显示。
 
